@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Fusion Funded — Affiliate Program." />
+  <title>The Fusion Funded | Affiliate Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+  <style>
+    html {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    /* Hero */
+    .affiliate-hero {
+      padding-top: 180px;
+      padding-bottom: 80px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .affiliate-hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .affiliate-hero-subtitle {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.5rem;
+      color: #00d4ff;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Steps Tracker */
+    .steps-section {
+      padding: 60px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      position: relative;
+    }
+
+    /* Connecting Line Removed */
+    .steps-container::before {
+      display: none;
+    }
+
+    .step-card {
+      background: rgba(14, 18, 30, 0.8);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 12px;
+      padding: 50px 30px;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      flex: 1;
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: #00d4ff;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin: 0 auto 25px auto;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    .step-card h3 {
+      font-family: 'Rajdhani', sans-serif;
+      color: #fff;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .step-card p {
+      color: #b0b0b0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .steps-container {
+        flex-direction: column;
+      }
+
+      .steps-container::before {
+        display: none;
+      }
+
+      .affiliate-hero {
+        padding-top: 110px;
+        padding-bottom: 40px;
+      }
+
+      .affiliate-hero-title {
+        font-size: 1.8rem;
+      }
+
+      .affiliate-hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .section-heading {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rewards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reward-image {
+        height: 180px;
+      }
+
+      .terms-section {
+        padding: 30px 16px;
+      }
+
+      /* Fix hunt banner inline styles */
+      #hunt-banner {
+        padding: 0 !important;
+      }
+
+      #hunt-banner > div {
+        border-radius: 16px !important;
+      }
+
+      #hunt-banner > div > div {
+        padding: 24px 16px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+        box-sizing: border-box !important;
+      }
+
+      #hunt-banner > div > div > div[style*="flex:1"],
+      #hunt-banner > div > div > div[style*="flex-shrink:0"] {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      #hunt-banner a {
+        white-space: normal !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+      }
+
+      /* Fix step cards */
+      .step-card {
+        padding: 30px 20px;
+      }
+
+      /* Fix benefits container double padding */
+      .benefits-grid.container {
+        padding: 0 !important;
+      }
+    }
+
+    /* Rewards Section */
+    .rewards-section {
+      padding: 80px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .rewards-coming-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rewards-coming-overlay span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 60px rgba(0, 212, 255, 0.4);
+    }
+
+    .section-heading {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 60px;
+    }
+
+    .rewards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .reward-card {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Dynamic glow based on tier */
+    .reward-card:nth-child(1):hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .reward-card:nth-child(2):hover {
+      border-color: rgba(0, 255, 170, 0.5);
+      box-shadow: 0 0 20px rgba(0, 255, 170, 0.2);
+    }
+
+    .reward-card:nth-child(3):hover {
+      border-color: rgba(0, 212, 255, 0.6);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .reward-card:nth-child(4):hover {
+      border-color: rgba(170, 0, 255, 0.6);
+      box-shadow: 0 0 20px rgba(170, 0, 255, 0.3);
+    }
+
+    .reward-card:nth-child(5):hover {
+      border-color: rgba(255, 0, 102, 0.6);
+      box-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
+    }
+
+    .reward-card:nth-child(6):hover {
+      border-color: rgba(255, 170, 0, 0.7);
+      box-shadow: 0 0 25px rgba(255, 170, 0, 0.4);
+    }
+
+    .reward-card:nth-child(7):hover {
+      border-color: rgba(255, 215, 0, 0.9);
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .reward-sales {
+      font-size: 1.1rem;
+      color: #8c92a4;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .reward-sales span {
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+
+    .reward-item {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #00d4ff;
+      background: linear-gradient(90deg, #fff, #00d4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .reward-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      margin-bottom: 25px;
+      border-radius: 12px;
+    }
+
+    /* Benefits */
+    .benefits-section {
+      padding: 80px 0;
+      border-top: none;
+      position: relative;
+      z-index: 2;
+      border-radius: 0;
+      margin-bottom: 60px;
+      background: transparent;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .benefit-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: 12px;
+      color: #00d4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .benefit-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .benefit-text h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    /* Terms */
+    .terms-section {
+      padding: 60px;
+      background: transparent;
+      border-radius: 20px;
+      border: none;
+      margin-bottom: 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .terms-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .terms-section ul {
+      margin-left: 20px;
+      color: #b0b0b0;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .terms-section li {
+      margin-bottom: 10px;
+    }
+
+    /* Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .animate-on-scroll.scrolled {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .slide-left {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-left.scrolled {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-right.scrolled {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+    <link rel="stylesheet" href="chatbot_widget/style.css">
+</head>
+
+<body>
+
+  <!-- ===== GLOBAL LIQUID GRADIENT BG ===== -->
+  <canvas id="liquid-bg"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" id="nav-logo" onclick="window.location.href='index.html';">
+        <img src="logo.png" alt="Logo" class="nav-logo-img">
+        <span class="logo-text">THE FUSION</span>
+        <span class="logo-accent">FUNDED</span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="trading_rules.html" class="nav-link">Trading Rules</a></li>
+        <li><a href="affiliate_program.html" class="nav-link">Affiliates</a></li>
+        <li><a href="contact_us.html" class="nav-link">Contact Us</a></li>
+        <li><a href="https://user.thefusionfunded.com/user/signup" class="nav-cta-mobile" target="_blank">Login / Sign
+            Up</a></li>
+      </ul>
+      <a href="https://user.thefusionfunded.com/user/signup" class="nav-cta" id="nav-cta" target="_blank">Login / Sign
+        Up</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== FLOATING GRADIENT ORBS ===== -->
+  <div class="gradient-orb orb-1"></div>
+  <div class="gradient-orb orb-2"></div>
+  <div class="gradient-orb orb-3"></div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="affiliate-hero container">
+    <h1 class="affiliate-hero-title">Become an Affiliate with <br><span class="gradient-text">The Fusion Funded</span>
+    </h1>
+    <p class="affiliate-hero-subtitle">Start Generating Income</p>
+    <a href="https://user.thefusionfunded.com/user/signup" class="btn-primary btn-large" target="_blank">
+      <span>Become an Affiliate</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+  </section>
+
+
+  <!-- ===== BENEFITS ===== -->
+  <section class="container">
+    <div class="benefits-section animate-on-scroll">
+      <h2 class="section-heading" style="margin-bottom: 40px;">Why The Fusion Funded?</h2>
+      <div class="benefits-grid container">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <div class="benefit-text">
+            <h4>Up to 20% Commission</h4>
+            <p style="color: #8c92a4; font-size: 0.9rem;">Earn heavily when a person buys from your referral link.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 3v18h18" />
+              <path d="m19 9-5 5-4-4-3 3" />
+            </svg>
+          </div>
+          <div class="benefit-text">
+            <h4>Real-Time Tracking</h4>
+            <p style="color: #8c92a4; font-size: 0.9rem;">Monitor referrals and monitor your earnings live.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <div class="benefit-text">
+            <h4>Instant Payouts</h4>
+            <p style="color: #8c92a4; font-size: 0.9rem;">Receive payouts instantly with multiple withdrawal options.
+            </p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <div class="benefit-text">
+            <h4>Dedicated Partner Manager</h4>
+            <p style="color: #8c92a4; font-size: 0.9rem;">Get absolute support via a personalized account rep.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <div class="benefit-text">
+            <h4>Exclusive Materials</h4>
+            <p style="color: #8c92a4; font-size: 0.9rem;">Access to exclusive marketing materials and resources.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="benefit-text">
+            <h4>Lifetime Commissions</h4>
+            <p style="color: #8c92a4; font-size: 0.9rem;">We offer lifetime commissions on recurring purchases.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== HUNT WITH US CTA BANNER ===== -->
+  <section id="hunt-banner" class="container" style="margin-bottom: 60px; position: relative; z-index: 2;">
+    <div
+      style="position:relative;border-radius:20px;padding:1.5px;background:conic-gradient(from 0deg,transparent 0deg,rgba(0,212,255,0.7) 60deg,rgba(0,80,200,0.4) 120deg,transparent 180deg,rgba(0,212,255,0.5) 240deg,transparent 300deg,transparent 360deg);animation:cgSpin 12s linear infinite;overflow:hidden;box-sizing:border-box;width:100%;">
+      <div
+        style="border-radius:19px;background:rgba(6,14,28,0.85);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);padding:clamp(20px,4vw,48px) clamp(16px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 8px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.07);position:relative;overflow:hidden;box-sizing:border-box;width:100%;">
+        <!-- shimmer line -->
+        <div
+          style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent);">
+        </div>
+        <!-- floating dots -->
+        <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+          <div
+            style="position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.25);top:20%;left:25%;animation:dotFloat 6s ease-in-out infinite;">
+          </div>
+          <div
+            style="position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.18);top:60%;left:45%;animation:dotFloat 8s 2s ease-in-out infinite;">
+          </div>
+          <div
+            style="position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2);top:35%;left:65%;animation:dotFloat 7s 1s ease-in-out infinite;">
+          </div>
+          <div
+            style="position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(255,255,255,0.15);top:75%;left:55%;animation:dotFloat 9s 3s ease-in-out infinite;">
+          </div>
+        </div>
+        <!-- left: headline -->
+        <div style="flex-shrink:0;">
+          <h2
+            style="font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#ffffff;line-height:1.15;margin:0;">
+            Come with Us.<br>Earn with Us.</h2>
+        </div>
+        <!-- center: desc -->
+        <div style="flex:1;min-width:0;max-width:420px;word-break:break-word;">
+          <p
+            style="font-family:'Inter',sans-serif;font-size:0.97rem;color:rgba(255,255,255,0.65);line-height:1.7;margin:0;">
+            The industry's most aggressive affiliate program. Lifetime commissions, luxury milestone rewards, and
+            on-demand payouts.</p>
+        </div>
+        <!-- right: buttons -->
+        <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
+          <a href="https://user.thefusionfunded.com/user/signup" target="_blank"
+            style="display:inline-flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:14px 20px;background:transparent;color:#ffffff;border:1.5px solid rgba(255,255,255,0.35);border-radius:8px;white-space:normal;transition:all 0.3s;text-decoration:none;width:100%;box-sizing:border-box;"
+            onmouseover="this.style.borderColor='#fff';this.style.background='rgba(255,255,255,0.08)'"
+            onmouseout="this.style.borderColor='rgba(255,255,255,0.35)';this.style.background='transparent'">Join The
+            Affiliate</a>
+          <a href="https://wa.me/447861395161?text=Hey%20I%20want%20to%20join%20the%20affiliate%20program"
+            target="_blank"
+            style="display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.08em;padding:14px 20px;background:#25D366;color:#fff;border:none;border-radius:8px;white-space:normal;transition:all 0.3s;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.35);width:100%;box-sizing:border-box;"
+            onmouseover="this.style.boxShadow='0 4px 28px rgba(37,211,102,0.55)';this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.boxShadow='0 4px 20px rgba(37,211,102,0.35)';this.style.transform='translateY(0)'">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            +44-7861395161
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REWARDS LADDER ===== -->
+  <section class="rewards-section container">
+    <div class="rewards-coming-overlay"><span>Rewards Coming Soon</span></div>
+    <h2 class="section-heading">Our Special Rewards Framework</h2>
+    <div class="rewards-grid">
+      <div class="reward-card slide-left">
+        <img class="reward-image" src="iphone_reward.png" alt="iPhone 128GB">
+        <div class="reward-sales"><span>50</span> Account Sales</div>
+        <div class="reward-item">iPhone (128GB)</div>
+      </div>
+      <div class="reward-card slide-right">
+        <img class="reward-image" src="macbook_reward.png" alt="MacBook Air">
+        <div class="reward-sales"><span>100</span> Account Sales</div>
+        <div class="reward-item">MacBook Air</div>
+      </div>
+      <div class="reward-card slide-left">
+        <img class="reward-image" src="cash_reward.png" alt="$1500 Cash">
+        <div class="reward-sales"><span>200</span> Account Sales</div>
+        <div class="reward-item">$1,500 Cash Prize</div>
+      </div>
+      <div class="reward-card slide-right">
+        <img class="reward-image" src="tiago_reward.png" alt="Tata Tiago">
+        <div class="reward-sales"><span>500</span> Account Sales</div>
+        <div class="reward-item">Tata Tiago</div>
+      </div>
+      <!-- <div class="reward-card slide-left">
+        <img class="reward-image" src="nexon_reward.png" alt="Tata Nexon">
+        <div class="reward-sales"><span>800</span> Account Sales</div>
+        <div class="reward-item">Tata Nexon</div>
+      </div> -->
+      <!-- <div class="reward-card slide-right">
+        <img class="reward-image" src="harrier_reward.png" alt="Tata Harrier">
+        <div class="reward-sales"><span>1500</span> Account Sales</div>
+        <div class="reward-item">Tata Harrier</div>
+      </div> -->
+      <!-- <div class="reward-card animate-on-scroll" style="grid-column: 1 / -1; margin-top: 20px;">
+        <img class="reward-image" src="mercedes_reward.png" style="height: 400px; width: 100%; object-fit: cover;" alt="Mercedes C-Class">
+        <div class="reward-sales" style="font-size: 1.5rem;"><span>3000</span> Account Sales</div>
+        <div class="reward-item" style="font-size: 3rem;">Mercedes (C-Class)</div>
+      </div> -->
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="terms-section animate-on-scroll">
+      <h3>Terms & Conditions</h3>
+      <ul>
+        <li>You will get instant commission in your referral dashboard, for all the account purchase through your link.
+        </li>
+        <li>You can withdraw affiliate commission once you withdrawal commission is at least 150USD or more.</li>
+        <li>If you will get minimum 25K account and above sale than only we will count it as one sale in our special
+          reward.</li>
+        <li>Once you reach to our car price you will get ex-showroom price of car (Base model).</li>
+        <li>You will also get one special manager once you get 50 sale of any account size.</li>
+      </ul>
+      <div style="margin-top: 30px;">
+        <a href="https://wa.me/message/M3FHBYUPELBIJ1" class="btn-ghost" target="_blank">
+          <span>Need Help? Contact Us</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <style>
+    #hunt-banner {
+      opacity: 0;
+      transform: translateY(100px) scale(0.88) rotateX(8deg);
+      filter: blur(6px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s ease;
+    }
+
+    #hunt-banner.hunt-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+      filter: blur(0px);
+    }
+
+    @keyframes dotFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(-12px);
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <!-- ===== LONG FOOTER ===== -->
+  <footer class="footer long-footer">
+    <div class="footer-glow"></div>
+    <div class="footer-gradient-shape"></div>
+    <div class="container">
+      <div class="footer-grid footer-grid-3">
+        <div class="footer-brand">
+          <div class="footer-logo">THE FUSION <span class="gradient-text">FUNDED</span></div>
+          <p>At The Fusion Funded, we empower traders to unlock their full potential in the financial markets. We
+            provide funded accounts and expert support to help you overcome financial barriers.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/thefusionfunded/" class="social-link" aria-label="Instagram"
+              target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="https://t.me/thefusionfunded" class="social-link" aria-label="Telegram" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/message/M3FHBYUPELBIJ1" class="social-link" aria-label="WhatsApp" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Official</h4>
+          <ul>
+            <li><a href="trading_rules.html">Trading Rules</a></li>
+            <li><a href="affiliate_program.html">Affiliate Program</a></li>
+
+            <li><a href="contact_us.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@thefusionfunded.com">info@thefusionfunded.com</a></li>
+            <li><a href="tel:+447861395161">+44 7861 395161</a></li>
+            <li>3rd Floor, The Binary Tower, Marasi Dr - Business Bay, Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        <h5>Risk Disclosure</h5>
+        <p>Trading in financial instruments carries a high level of risk to your capital, with the possibility of losing
+          more than your initial investment. Trading in financial instruments may not be suitable for all investors and
+          is only intended for people over 18. Please ensure that you are fully aware of the risks involved and, if
+          necessary, seek independent financial advice. The educational content on The Fusion Funded does not constitute
+          investment advice.</p>
+        <p>The Fusion Funded does not provide financial services. The Fusion Funded is a simulated trading platform
+          where users can experience realistic trading conditions without risking actual capital. All trading activities
+          on this platform use virtual funds and do not constitute real financial transactions. Past simulated
+          performance is not indicative of future real-world results.</p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 The Fusion Funded. All Rights Reserved.</p>
+        <!-- <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Risk Disclosure</a>
+        </div> -->
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('scrolled');
+          } else {
+            // Re-apply animation when it goes out of screen and back
+            entry.target.classList.remove('scrolled');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const animatedElements = document.querySelectorAll('.animate-on-scroll, .slide-left, .slide-right');
+      animatedElements.forEach((el) => observer.observe(el));
+
+      const huntBanner = document.getElementById('hunt-banner');
+      if (huntBanner) {
+        const huntObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              huntBanner.classList.add('hunt-visible');
+            } else {
+              huntBanner.classList.remove('hunt-visible');
+            }
+          });
+        }, { threshold: 0.15 });
+        huntObserver.observe(huntBanner);
+      }
+    });
+  </script>
+    <!-- Chat Widget -->
+    <div class="chat-container">
+        <div class="chat-messages">
+            <!-- Home Tab Content -->
+            <div class="tab-content" id="home-tab">
+                <div class="home-hero">
+                    <img src="logo.png" alt="Logo" class="chat-logo">
+                    <div class="home-hero-actions">
+                        <button id="header-close-btn" class="header-btn" aria-label="Close Chat" title="Close Chat">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M6 6L18 18" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h2>Hi there,</h2>
+                    <p>How can we help?</p>
+                </div>
+
+                <div class="home-message-section">
+                    <div class="home-section" onclick="switchToMessages()">
+                        <div>
+                            <div class="section-title">Hi I'm Neeraj</div>
+                            <div class="section-subtitle">Always here for you</div>
+                        </div>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="home-help-section">
+                    <div class="help-search-box">
+                        <div class="help-search-input-wrapper">
+                            <input type="text" placeholder="Search for help" readonly onclick="switchToHelp()" />
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="message-suggestions">
+                            <div class="suggestion-item" onclick="askQuestion('What is a prop firm?')">
+                                <span>What is a prop firm?</span>
+                            </div>
+                            <div class="suggestion-item" onclick="askQuestion('How to take a payout')">
+                                <span>How to take a payout</span>
+                            </div>
+                            <div class="suggestion-item" onclick="askQuestion('Drawdown rules')">
+                                <span>Drawdown rules</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Tab Content -->
+            <div class="tab-content" id="messages-tab" style="display: none;">
+            </div>
+
+            <!-- Help Tab Content -->
+            <div class="tab-content" id="help-tab" style="display: none;">
+                <!-- Search Bar -->
+                <div class="help-search-container">
+                    <div class="help-search-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="search-icon">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <input type="text" id="help-search-input" placeholder="Search for help" />
+                    </div>
+                </div>
+
+                <!-- Search Results -->
+                <div class="help-search-results" id="help-search-results" style="display: none;"></div>
+
+                <div class="help-content" id="help-main">
+                    <h3>THE FUSION FUNDED Knowledge Base</h3>
+                    <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">Comprehensive guide to evaluation,
+                        trading rules, and operations</p>
+                    <div class="faq-item" onclick="showFaqCategory('evaluation')">
+                        <span>📊 About & Evaluation Models</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="faq-item" onclick="showFaqCategory('drawdown')">
+                        <span>⚠️ Drawdown & Risk Management</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="faq-item" onclick="showFaqCategory('trading')">
+                        <span>📈 Trading Rules & Guidelines</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="faq-item" onclick="showFaqCategory('payouts')">
+                        <span>💰 Withdrawals & Payouts</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="faq-item" onclick="showFaqCategory('compliance')">
+                        <span>✅ KYC & Verification</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="faq-item" onclick="showFaqCategory('operations')">
+                        <span>🔧 Account Security & Access</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="faq-item" onclick="showFaqCategory('refunds')">
+                        <span>💳 Refund Policies</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Category View -->
+                <div class="help-category" id="help-category" style="display: none;"></div>
+
+                <!-- Article View -->
+                <div class="help-article" id="help-article" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="chat-input-area" id="chat-input-area" style="display: none;">
+            <div id="attachment-preview" class="attachment-preview"></div>
+            <div class="input-wrapper">
+                <input type="file" id="file-input" multiple accept="*/*" style="display: none;"
+                    onchange="handleFileUpload(event)">
+                <button class="input-icon-btn" onclick="document.getElementById('file-input').click()"
+                    title="Attach file">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="input-icon-btn" onclick="handleVoiceRecord()" title="Voice message">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <input type="text" placeholder="Type your question..." aria-label="Type your question" maxlength="100">
+                <button class="send-btn" aria-label="Send">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="chat-bottom-nav">
+            <button class="nav-item active" data-tab="home">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-tab="messages">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Messages</span>
+            </button>
+            <button class="nav-item" data-tab="help">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Help</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Launcher Button -->
+    <button id="chat-launcher" class="chat-launcher" aria-label="Open Chat">
+        <div class="launcher-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M21 11.5C21.0039 12.8199 20.6957 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0039 9.87812 19.6957 8.7 19.1L3 21L4.9 15.3C4.30426 14.1219 3.99604 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30429 11.1801 2.99607 12.5 3H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+        <div class="close-icon" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+    </button>
+    <script type="module" src="chatbot_widget/script.js"></script>
+</body>
+
+</html>
