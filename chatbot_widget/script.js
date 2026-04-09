@@ -1,13 +1,17 @@
-import { GENERAL_QA_DATASET, PROP_FIRM_QA_DATASET } from './dataset.js';
+import { RAW_NEW_INSTRUCTIONS, RAW_QUESTIONS_INSTRUCTIONS, RAW_HFT_FAQ } from './dataset.js';
 
 const CUSTOMER_CARE_NUMBER = "14545454";
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzuzQWPc85A9RSJ3mdtYj7NGym8rCOjunMGAMluVEf9k4hssAGrVxwfXG4d1RzYcLoE/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwRoeDbrZYDc8sY_LTiKGFj3o0JD_oOjpCRKJmuO8bVRDtYo5pRIZVPCG5sdfKEvYXM/exec";
 
-// Combine datasets
-const FULL_DATASET = [...GENERAL_QA_DATASET, ...PROP_FIRM_QA_DATASET];
+// Format dataset for the AI context exactly matching the files, overriding where necessary
+const KNOWLEDGE_BASE_TEXT = `KNOWLEDGE BASE (Ground Truth):
+${RAW_QUESTIONS_INSTRUCTIONS}
 
-// Format dataset for the AI context
-const KNOWLEDGE_BASE_TEXT = FULL_DATASET.map(item => `Q: ${item.question}\nA: ${item.answer}`).join("\n\n");
+UPDATES / OVERRIDES (These facts OVERRIDE the knowledge base above in case of any collisions, these are the absolute truth!):
+${RAW_NEW_INSTRUCTIONS}
+
+HFT & ALGO FAQ (Additional Q&A):
+${RAW_HFT_FAQ}`;
 
 let state = {
     turn_count: 0,
@@ -153,109 +157,145 @@ function addMessage(text, sender, isHtml = false) {
 
 // Format text for better display
 function formatText(text) {
-    return text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
-        .replace(/(?<!\*)\*(?!\*)(.*?)\*(?!\*)/g, '<em>$1</em>') // Italic (not part of **)
-        .replace(/`(.*?)`/g, '<code>$1</code>') // Inline code
-        .replace(/^\* (.+)$/gm, '<li>$1</li>') // Convert * bullets to list items
-        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>') // Wrap list items in ul
-        .replace(/<\/li>\s*<li>/g, '</li><li>') // Clean up list formatting
-        .replace(/\n\n/g, '</p><p>') // Paragraphs
-        .replace(/\n/g, '<br>') // Line breaks
-        .replace(/^(.*)$/, '<p>$1</p>') // Wrap in paragraph
-        .replace(/<p><ul>/g, '<ul>').replace(/<\/ul><\/p>/g, '</ul>') // Fix ul wrapping
-        .replace(/<p><\/p>/g, '') // Remove empty paragraphs
-        .replace(/^<p>/, '').replace(/<\/p>$/, '') // Remove outer paragraph tags
-        .replace(/&#39;/g, "'") // Fix HTML entities
+    // Fix HTML entities first
+    text = text
+        .replace(/&#39;/g, "'")
         .replace(/&quot;/g, '"')
         .replace(/&amp;/g, '&');
+
+    // Headers
+    text = text
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+    // Bold and italic
+    text = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/(?<!\*)\*(?!\*)(.*?)\*(?!\*)/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<code>$1</code>');
+
+    // Numbered lists: group consecutive lines starting with "1. 2. 3." etc.
+    text = text.replace(/((?:^\d+\. .+\n?)+)/gm, (match) => {
+        const items = match.trim().split('\n').map(line =>
+            `<li>${line.replace(/^\d+\.\s*/, '')}</li>`
+        ).join('');
+        return `<ol>${items}</ol>`;
+    });
+
+    // Bullet lists: group consecutive lines starting with "* " or "- "
+    text = text.replace(/((?:^[*\-] .+\n?)+)/gm, (match) => {
+        const items = match.trim().split('\n').map(line =>
+            `<li>${line.replace(/^[*\-]\s*/, '')}</li>`
+        ).join('');
+        return `<ul>${items}</ul>`;
+    });
+
+    // Paragraphs: split on double newlines, skip already-tagged blocks
+    const lines = text.split(/\n\n+/);
+    text = lines.map(block => {
+        block = block.trim();
+        if (!block) return '';
+        if (/^<(h[1-3]|ul|ol|li|blockquote|pre)/.test(block)) return block;
+        // Single newlines within a paragraph become <br>
+        return `<p>${block.replace(/\n/g, '<br>')}</p>`;
+    }).join('');
+
+    // Remaining single newlines outside blocks
+    text = text.replace(/(?<!>)\n(?!<)/g, '<br>');
+
+    return text;
 }
 
 // LOCAL FALLBACK MATCHING (In case API fails)
 function findBestMatchFallback(userInput) {
-    if (!userInput) return null;
+    const defaultResponse = "I'm sorry, I couldn't find an exact match for your question. Please try rephrasing or contact our support team for help.";
+    if (!userInput) return defaultResponse;
 
-    const STOP_WORDS = new Set([
-        "a", "an", "the", "is", "are", "was", "were", "to", "of", "in", "on", "at", "for",
-        "by", "with", "about", "how", "what", "when", "where", "who", "why", "can", "could",
-        "would", "should", "do", "does", "did", "i", "me", "my", "you", "your", "it", "its",
-        "we", "our", "they", "their", "hello", "hi", "hey"
-    ]);
+    const query = userInput.toLowerCase();
 
-    function getTokens(text) {
-        return text.toLowerCase()
-            .replace(/[^\w\s]/g, '')
-            .split(/\s+/)
-            .filter(word => word.length > 0);
+    // Quick conversational checks
+    if (["hello", "hi", "hey", "good morning"].some(g => query === g || query.startsWith(g + ' '))) {
+        return "Hello! 👋 I am Rajesh, The Fusion Funded's AI assistant. How can I help you today?";
+    }
+    if (query.includes("who are you") || query.includes("your name")) {
+        return "I'm Rajesh, The Fusion Funded's official AI assistant. I'm here to answer your questions about our rules, challenges, and payouts!";
     }
 
-    function getMeaningfulTokens(tokens) {
-        return tokens.filter(word => !STOP_WORDS.has(word));
-    }
-
-    const inputTokens = getTokens(userInput);
-    const inputMeaningful = getMeaningfulTokens(inputTokens);
-
+    // --- Step 1: search FAQ_DATA structured entries ---
     let bestMatch = null;
     let highestScore = 0;
 
-    for (const item of FULL_DATASET) {
-        if (!item.question) continue;
+    const queryWords = query.split(/\W+/).filter(w => w.length > 2);
 
-        const questionTokens = getTokens(item.question);
-        const questionMeaningful = getMeaningfulTokens(questionTokens);
+    for (const category in FAQ_DATA) {
+        for (const item of FAQ_DATA[category].questions) {
+            const questionWords = item.q.toLowerCase().split(/\W+/).filter(w => w.length > 2);
+            // score against both the question text AND the answer text
+            const answerWords = item.a.replace(/<[^>]*>/g, '').toLowerCase().split(/\W+/).filter(w => w.length > 2);
+            const allWords = [...new Set([...questionWords, ...answerWords])];
 
-        const useMeaningful = inputMeaningful.length > 0 && questionMeaningful.length > 0;
-        const setA = useMeaningful ? inputMeaningful : inputTokens;
-        const setB = useMeaningful ? questionMeaningful : questionTokens;
+            let score = 0;
+            for (const qw of queryWords) {
+                if (allWords.includes(qw)) score++;
+            }
 
-        let matchCount = 0;
-        for (const word of setA) {
-            if (setB.includes(word)) {
-                matchCount++;
+            const normalizedScore = queryWords.length > 0 ? score / queryWords.length : 0;
+            if (normalizedScore > highestScore) {
+                highestScore = normalizedScore;
+                bestMatch = item.a;
             }
         }
+    }
 
+    if (highestScore >= 0.25 && bestMatch) {
+        return bestMatch.replace(/<[^>]*>?/gm, '');
+    }
+
+    // --- Step 2: fallback — scan KNOWLEDGE_BASE_TEXT for the most relevant paragraph ---
+    const paragraphs = KNOWLEDGE_BASE_TEXT.split(/\n{2,}/).filter(p => p.trim().length > 40);
+    let bestPara = null;
+    let bestParaScore = 0;
+
+    for (const para of paragraphs) {
+        const paraWords = para.toLowerCase().split(/\W+/).filter(w => w.length > 2);
         let score = 0;
-        const totalTokens = setA.length + setB.length;
-        if (totalTokens > 0) {
-            score = (2 * matchCount) / totalTokens;
+        for (const qw of queryWords) {
+            if (paraWords.includes(qw)) score++;
         }
-
-        const normalizedInput = inputTokens.join(' ');
-        const normalizedQuestion = questionTokens.join(' ');
-
-        if (normalizedInput === normalizedQuestion) {
-            score = 1.1;
-        } else if (normalizedQuestion.includes(normalizedInput) || normalizedInput.includes(normalizedQuestion)) {
-            score += 0.2;
-        }
-
-        if (score > highestScore) {
-            highestScore = score;
-            bestMatch = item;
+        const normalizedScore = queryWords.length > 0 ? score / queryWords.length : 0;
+        if (normalizedScore > bestParaScore) {
+            bestParaScore = normalizedScore;
+            bestPara = para.trim();
         }
     }
 
-    if (highestScore > 0.3) {
-        return bestMatch.answer;
+    if (bestParaScore >= 0.2 && bestPara) {
+        return bestPara;
     }
-    return null;
+
+    return defaultResponse;
 }
 
 // Call API endpoint
 async function callGroqAPI(userMessage) {
     try {
-        const GROQ_API_KEY = ""; // Key configured on deployment
-        const systemPrompt = `You are Neeraj, an intelligent assistant for The Fusion Funded, a proprietary trading firm. Your role is to answer questions STRICTLY based on the knowledge base provided below.
+        const GROQ_API_KEY = "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";
+        const systemPrompt = `You are Rajesh, an intelligent assistant for The Fusion Funded, a proprietary trading firm. Your role is to answer questions STRICTLY based on the knowledge base provided below.
 
 IMPORTANT RULES:
 1. ONLY use information from the knowledge base below to answer questions
 2. If a question is about The Fusion Funded but not in the knowledge base, say: "I don't have that specific information. Please contact support for detailed assistance."
 3. For questions unrelated to prop trading, say: "I can only help with The Fusion Funded related questions."
-4. Keep responses concise (50-100 words) and helpful
-5. Use bullet points for lists when appropriate
-6. Match the tone and detail level from the knowledge base answers
+4. Keep responses concise and helpful (aim for 80-150 words)
+5. Match the tone and detail level from the knowledge base answers
+
+FORMATTING RULES (follow strictly):
+- When listing points or features, always use "- " (dash + space) as the bullet prefix, one per line
+- When showing steps, format each as its own line: "Step 1 — [title]: [description]"
+- Never use "*" or "•" as bullets, always use "-"
+- Use **bold** only for step titles or key terms
+- Keep each bullet/step on its own line with a blank line between sections
 
 KNOWLEDGE BASE:
 ${KNOWLEDGE_BASE_TEXT}
@@ -275,7 +315,7 @@ Answer the user's question based ONLY on the above knowledge base.`;
                 ],
                 model: "llama-3.3-70b-versatile",
                 temperature: 0.3,
-                max_tokens: 200
+                max_tokens: 50
             })
         });
 
@@ -930,116 +970,95 @@ document.querySelectorAll('.chat-bottom-nav .nav-item').forEach(item => {
     });
 });
 
-// FAQ Data Structure - Comprehensive Sharkfunded Knowledge Base
 const FAQ_DATA = {
     evaluation: {
-        title: "All Collections ",
+        title: "About The Fusion Funded",
         questions: [
             {
                 q: "What is The Fusion Funded?",
-                a: "<p>The Fusion Funded is a proprietary trading firm that provides traders with access to funded capital through a structured evaluation process. Our model is specifically designed for traders who use high-frequency trading systems (HFT), automation, and advanced execution strategies to achieve performance efficiently.</p><p>Unlike traditional prop firms, The Fusion Funded allows traders to use HFT-based strategies during the challenge phase, enabling faster completion of evaluation objectives. We operate on a single evaluation model: the HFT 2.0 Challenge — designed to assess a trader's ability to generate profits while maintaining strict risk management.</p><p>Traders may also choose to work with our trusted partners who specialize in high-frequency trading systems. All accounts that meet the evaluation criteria are reviewed and transitioned into a funded trading environment where structured risk rules apply.</p>"
+                a: "<p>The Fusion Funded is a proprietary trading firm that provides traders with access to funded capital through a structured evaluation process. Our model is specifically designed for traders who use high-frequency trading systems (HFT), automation, and advanced execution strategies to achieve performance efficiently.</p><p>Unlike traditional prop firms, The Fusion Funded allows traders to use HFT-based strategies during the challenge phase, enabling faster completion of evaluation objectives. We operate on a single evaluation model: the <strong>HFT 2.0 Challenge</strong>.</p><p>Traders may also choose to work with our trusted partners, who specialize in high-frequency trading systems and can assist in completing the challenge using advanced trading solutions. All accounts that successfully meet the evaluation criteria are reviewed and transitioned into a funded trading environment where structured risk rules are applied.</p>"
             },
             {
                 q: "What makes The Fusion Funded different?",
-                a: "<p>The Fusion Funded operates on a performance-driven and execution-flexible model built specifically for modern traders. Key differences include: HFT-enabled challenge phase — traders can use high-frequency trading systems, automation, and fast execution strategies to complete the challenge. Single streamlined evaluation (HFT 2.0) — no complex multi-phase challenges, just one clear path to funding. Improved risk structure with 10% maximum drawdown and 7% daily drawdown. Flexible profit split of 60% → 70% → 80% → 90%. Faster progression designed to allow traders to complete evaluations efficiently using their preferred strategies. Once funded, traders operate under a structured and controlled trading environment to ensure long-term sustainability and capital protection.</p>"
+                a: "<p>The Fusion Funded operates on a performance-driven and execution-flexible model, built specifically for modern traders. Key differences include:</p><ul><li><strong>HFT-enabled challenge phase</strong>: Traders can use high-frequency trading systems, automation, and fast execution strategies.</li><li><strong>Single streamlined evaluation (HFT 2.0)</strong>: No complex multi-phase challenges — one clear path to funding.</li><li><strong>Improved risk structure</strong>: 10% maximum drawdown and 7% daily drawdown.</li><li><strong>Flexible payout structure</strong>: Traders can earn up to 60% → 70% → 80% → 90% profit split.</li><li><strong>Faster progression system</strong>: Designed to allow traders to complete evaluations efficiently.</li></ul>"
             },
             {
-                q: "How do I get started with The Fusion Funded?",
-                a: "<p>Getting started with The Fusion Funded is simple! Step 1 — Choose Your Account: Select your preferred account size and purchase the HFT 2.0 Challenge. Step 2 — Start Trading: Begin trading on your challenge account. You may trade manually or use HFT systems and automated strategies to achieve the profit target. Traders may also choose to work with our trusted partners who can assist using high-frequency trading systems. Step 3 — Achieve the Profit Target: Reach the required profit target while following all trading rules. Step 4 — Account Review: Once the target is achieved, your account is reviewed to ensure compliance with all rules. Step 5 — Get Funded: After successful review, you will receive your funded account and can begin trading under the funded model.</p>"
+                q: "How do I get started?",
+                a: "<p>Getting started is simple:</p><p><strong>Step 1 — Choose Your Account:</strong> Select your preferred account size and purchase the HFT 2.0 Challenge.</p><p><strong>Step 2 — Start Trading:</strong> Begin trading on your challenge account. You may trade manually or use HFT systems and automated strategies.</p><p><strong>Step 3 — Achieve the Profit Target:</strong> Reach the required profit target while following all trading rules.</p><p><strong>Step 4 — Account Review:</strong> Once the target is achieved, your account is reviewed to ensure compliance with all rules.</p><p><strong>Step 5 — Get Funded:</strong> After successful review, you will receive your funded account and can begin trading under the funded model.</p>"
             },
             {
                 q: "Who can join The Fusion Funded?",
-                a: "<p>The Fusion Funded is designed for retail traders worldwide who want to demonstrate their trading skills, improve performance, and earn profits through our funded account program. We welcome individuals who are passionate about trading, regardless of prior experience.</p><p>The Fusion Funded is open to traders from diverse backgrounds and experience levels. Both beginners and experienced traders are welcome to participate. All participants must be at least 18 years of age.</p><p><strong>Restricted Jurisdictions & Compliance:</strong></p><p>To comply with international regulations, The Fusion Funded does not provide services to individuals who are located in or are residents of the following countries or regions:</p><ul><li>Democratic People’s Republic of Korea (North Korea)</li><li>Iran</li><li>South Sudan</li><li>Sudan</li><li>Yemen</li></ul><p>Additionally, we do not provide services to individuals or entities listed on international sanctions lists or global anti-terrorism compliance lists.</p><p><strong>Additional Restrictions:</strong></p><ul><li>Individuals listed on international sanctions lists</li><li>Persons with criminal histories involving financial crimes or terrorism</li><li>Individuals previously banned due to contract violations or policy breaches</li></ul>"
-            },
-            {
-                q: "The Fusion Funded — HFT 2.0 Challenge Model",
-                a: "<p>The Fusion Funded operates on a single evaluation system known as the HFT 2.0 Challenge. This model is designed for traders who want to use high-frequency trading systems (HFT), automation, and advanced execution strategies to complete their evaluation efficiently.</p><p><strong>During the challenge phase:</strong></p><ul><li>HFT strategies are allowed</li><li>Tick scalping is allowed</li><li>Arbitrage and latency-based strategies are allowed</li></ul><p>Traders may also choose to work with our trusted partners who specialize in high-frequency trading systems and can assist in completing the challenge efficiently.</p><p><strong>Challenge Objectives:</strong></p><p>To successfully complete the HFT 2.0 Challenge, traders must: Achieve the required profit target (10% of initial account size), Follow all trading rules, Maintain proper risk management.</p><p><strong>Evaluation Process:</strong></p><p>Once the profit target is achieved, the account is placed under review. Trading behavior and rule compliance are verified. Upon approval, the trader is moved to the funded stage.</p>"
-            },
-            {
-                q: "How many trading days are required to complete the evaluation?",
-                a: "<p>The Fusion Funded requires a minimum of 12 trading days to complete the HFT 2.0 Challenge. An optional add-on may reduce this requirement to 7 trading days.</p><p>A trading day counts only if you place a trade and achieve at least 0.1x (one-tenth) of the highest profit on a single trade or trading day used during the payout cycle. Trades below this threshold will not be counted as valid trading days.</p>"
-            },
-            {
-                q: "What is the minimum trading day rule?",
-                a: "<p>A trading day will only count when the trader places a trade and achieves at least 0.1x (one-tenth) of the highest profit on a single trade or day used during the payout cycle.</p><p><strong>Example:</strong></p><ul><li>If the highest profit is $1,000, the minimum profit required to count a day is $100.</li></ul><p>Trades below this threshold are not counted as valid trading days.</p>"
+                a: "<p>The Fusion Funded is open to traders worldwide who want to demonstrate their trading skills and access funded capital. Eligibility requirements:</p><ul><li>Must be at least 18 years old</li><li>Must have a valid trading strategy</li><li>Must follow all trading rules and risk guidelines</li></ul><p><strong>Restricted Jurisdictions & Compliance:</strong> We do not provide services to individuals located in or residents of North Korea, Iran, South Sudan, Sudan, or Yemen. We also do not provide services to individuals listed on international sanctions lists, persons with criminal histories involving financial crimes or terrorism, or individuals previously banned due to contract violations.</p>"
             }
         ]
     },
     drawdown: {
-        title: "Drawdown & Risk Management",
+        title: "Drawdown & Limits",
         questions: [
             {
-                q: "Maximum Drawdown Rule",
-                a: "<p>The Fusion Funded uses a drawdown model with both maximum and daily limits.</p><ul><li><strong>Maximum Drawdown:</strong> 10% of initial account size</li><li><strong>Daily Drawdown:</strong> 7% of initial account size</li></ul><p>Your balance or equity must never fall below the defined limits.</p><p><strong>Example:</strong></p><ul><li>Account Size: $100,000</li><li>Maximum Drawdown: $10,000</li><li>Daily Drawdown: $7,000</li><li>Minimum Equity Allowed: $90,000</li></ul>"
-            },
-            {
-                q: "Single-Trade Risk Rule",
-                a: "<p>A trader can risk a maximum of 20% of the total drawdown allowance in a single trade, and a mandatory Stop Loss (SL) on positions is required to track and keep the maximum allowed risk under 20%.</p><p><strong>Example:</strong></p><ul><li>Account Size: $100,000</li><li>Total Drawdown Allowance: $10,000</li><li>Maximum Risk Per Trade: $2,000</li></ul><p>Exceeding this limit at any point during trade execution or exposure calculation will be treated as a violation, regardless of trade outcome. This may be a warning for the first time but is a hard breach afterwards.</p>"
-            },
-            {
-                q: "Account Violation (Hard Breach)",
-                a: "<p>A hard breach represents a serious violation and results in immediate account termination.</p>"
+                q: "What are the drawdown limits?",
+                a: "<p>Maximum Drawdown is 10% and Daily Drawdown is 7%. For complete rules, please see the Trading Rules section.</p>"
             }
         ]
     },
     trading: {
-        title: "Weekend Trading",
+        title: "Trading Rules & Guidelines",
         questions: [
             {
+                q: "The Fusion Funded — HFT 2.0 Challenge Model",
+                a: "<p>The Fusion Funded operates on a single evaluation system known as the HFT 2.0 Challenge. This model is designed for traders who want to use high-frequency trading systems (HFT), automation, and advanced execution strategies to complete their evaluation efficiently.</p><p>During the challenge phase: HFT strategies are allowed, Tick scalping is allowed, Arbitrage and latency-based strategies are allowed.</p><p>Once funded, all accounts operate under a structured and rule-based environment, where specific trading restrictions apply.</p>"
+            },
+            {
+                q: "Challenge Objectives & Profit Target",
+                a: "<p>To successfully complete the HFT 2.0 Challenge, traders must achieve the required profit target, follow all trading rules, and maintain proper risk management. All accounts are reviewed after completion.</p><p><strong>Profit Target:</strong> 10% of the initial account size. Example: For a $100,000 account, Profit Target = $10,000.</p>"
+            },
+            {
+                q: "Drawdown Rules",
+                a: "<p><strong>Maximum Overall Drawdown:</strong> Maximum loss allowed is 10% of initial account size.</p><p><strong>Daily Drawdown:</strong> Daily loss limit is 7%.</p><p>Example for a $100,000 account: Maximum Drawdown is $10,000, and Daily Drawdown is $7,000. The account balance or equity must never fall below the defined limits.</p>"
+            },
+            {
+                q: "20% Risk Per Trade Rule",
+                a: "<p>A trader can risk a maximum of 20% of the total drawdown allowance in a single trade, and to follow this rule, a mandatory SL on positions is required in order to track and keep the maximum allowed risk under 20%.</p><p>Example for a $100,000 account with $10,000 total drawdown allowed: Maximum Risk Per Trade = $2,000.</p><p>Exceeding this limit at any point during trade execution or exposure calculation will be treated as a violation, regardless of trade outcome. This may be a warning for the first time but is a hard breach afterwards.</p>"
+            },
+            {
+                q: "Consistency Rule",
+                a: "<p>A trader’s single trading day or trade must not exceed 30% of total profits. Exceeding this limit will result in a violation.</p><p>For example, if the total profit is $10,000, the maximum allowed from a single day or trade is $3,000.</p>"
+            },
+            {
+                q: "Minimum Trading Days & Minimum Trading Day Rule",
+                a: "<p><strong>Minimum Trading Days:</strong> Minimum required trading days is 12 days. Optional add-on reduces this to 7 trading days.</p><p><strong>Minimum Trading Day Rule (Profit-Based):</strong> A trading day will only be counted if the trader places a trade and achieves at least 0.1x (1/10th) of the highest profit on a single trade/day used during the payout cycle. Trades below this threshold will not be counted as valid trading days.</p>"
+            },
+            {
+                q: "Layering Rule",
+                a: "<p>Opening more than 3 positions in the same direction on the same instrument simultaneously is not allowed. Adding positions to trades that are already in drawdown, grid trading, or recovery-based entries may be considered a violation.</p><p>In the Challenge Phase, it may be treated as a soft breach. In the Funded Stage, it may be treated as a hard breach.</p>"
+            },
+            {
+                q: "Martingale Rule",
+                a: "<p>Martingale trading is strictly prohibited. Martingale includes increasing position size after a loss in an attempt to recover previous losses. The sum of all open positions will be treated as a single combined position.</p><p>If a trader increases total exposure to more than 1.6X after a losing trade, it will be considered a martingale strategy. In the Challenge Phase, this may be treated as a soft breach. In the Funded Stage, this may be treated as a hard breach.</p>"
+            },
+            {
+                q: "Minimum Trade Holding Time",
+                a: "<p>This rule applies to <strong>Live Accounts Only</strong>. On funded accounts, each trade must be held for a minimum of 2 minutes.</p><p>Up to 1-2 trades per payout cycle may be ignored. If this limit is exceeded, it will be treated as a soft breach, the payout will be rejected, and the account will be reset to the initial balance.</p>"
+            },
+            {
+                q: "Tick Scalping & Arbitrage",
+                a: "<p><strong>Tick Scalping:</strong> Extremely fast trades capturing very small price movements repeatedly. During the challenge phase, tick scalping is allowed. On funded accounts, tick scalping is restricted and excessive use may be treated as a violation.</p><p><strong>Arbitrage Trading:</strong> Exploiting price differences rather than trading market direction. During the challenge phase, arbitrage strategies are allowed. On funded accounts, arbitrage trading is restricted and such activity may be treated as a violation.</p>"
+            },
+            {
+                q: "Trading Behavior Violations",
+                a: "<p>The following behaviors are considered violations:</p><ul><li><strong>Toxic Trading Behavior:</strong> Ignoring risk management, reckless trading, trading without a clear strategy.</li><li><strong>Overtrading:</strong> Excessive trades in a short time, continuous entries without proper setup.</li><li><strong>Gambling Behavior:</strong> Random entries, revenge trading, emotion-driven execution.</li><li><strong>Improper Hedging:</strong> Opening opposite trades on same instrument, locking positions.</li><li><strong>Reverse Trading:</strong> Intentionally placing losing trades, offset across accounts.</li><li><strong>One-Sided Bias Trading:</strong> Repeated direction without justification.</li><li><strong>Excessive Risk-Taking / Over-Leveraging:</strong> Repeated max lot size, damaging trades, over-reliance on leverage.</li></ul>"
+            },
+            {
                 q: "Is Weekend Holding Allowed?",
-                a: "<p><strong>Yes — Weekend Holding Is Allowed (With Prior Approval)</strong></p><p>Traders are permitted to hold positions over the weekend in both challenge and funded phases, but prior approval is required. To hold trades over the weekend, traders must inform support before the market closes on Friday. Approval requests can be made through any support method: WhatsApp, Instagram, Email, or the Contact Us panel. The request should clearly mention that positions will remain open. Failure to notify support before the Friday market close will result in a hard breach and account termination.</p><p><strong>Important Things to Keep in Mind:</strong></p><ul><li>Markets may open with price gaps after the weekend</li><li>Slippage or increased volatility can occur at market open</li><li>All standard risk rules including drawdown limits still apply</li></ul><p>We strongly recommend managing risk carefully when holding positions over the weekend.</p>"
+                a: "<p>Yes — Weekend Holding is allowed with prior approval. Traders are permitted to hold positions over the weekend on both challenge and funded accounts, provided approval is obtained before the market closes on Friday.</p><p>Approvals requests can be made through any support method (Whatsapp, Instagram, Email or Contact Us panel). Failure to notify support before market close may result in a violation.</p><p><strong>Important:</strong> Markets may open with price gaps. Increased volatility and slippage can occur. All standard risk rules still apply.</p>"
             },
             {
-                q: "Layering",
-                a: "<p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed.</p><p>Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation.</p><ul><li>Soft breach during evaluation.</li><li>Hard breach during funded stage.</li></ul>"
+                q: "Is News Trading Allowed?",
+                a: "<p>Yes, News trading is fully allowed. Traders may open, close, and manage positions during high-impact news releases, economic announcements, and volatile market conditions.</p><p>Traders are responsible for managing risk during periods of high volatility. All standard risk rules still apply.</p>"
             },
             {
-                q: "Toxic Trading Behavior (Soft Breach)",
-                a: "<p>Examples include:</p><ul><li>Ignoring risk management</li><li>Reckless trading behavior</li><li>Trading without a clear strategy</li><li>Emotion-driven trading</li></ul><p>Repeated violations may lead to restrictions or termination.</p>"
-            },
-            {
-                q: "Excessive Risk-Taking / Over-Leveraging",
-                a: "<p>Examples:</p><ul><li>Using disproportionately large position sizes</li><li>Using maximum lot size repeatedly</li><li>Taking trades that can damage the account quickly</li><li>Relying heavily on leverage</li></ul>"
-            },
-            {
-                q: "What is the minimum trade holding time on funded accounts?",
-                a: "<p>On funded accounts, each trade must be held for a minimum of 2 minutes.</p><p>Up to 1–2 trades per payout cycle may be ignored. If this limit is exceeded, it will be treated as a soft breach, the payout will be rejected, and the account may be reset to the initial balance.</p>"
-            },
-            {
-                q: "Martingale Trading Policy",
-                a: "<p>Martingale trading is strictly prohibited. Martingale includes increasing position size after a loss in an attempt to recover previous losses. The sum of all open positions will be treated as a single combined position. If a trader increases total exposure to more than 1.6X after a losing trade, it will be considered a martingale strategy.</p><p>Examples:</p><ul><li>Increasing lot size more than 1.6X after a loss</li><li>Re-entering trades with higher risk to recover drawdown</li><li>Adding positions that increase total exposure after a loss</li></ul><p><strong>Consequences:</strong></p><ul><li>Challenge phase: May be treated as a soft breach</li><li>Funded phase: May be treated as a hard breach</li></ul>"
-            },
-            {
-                q: "Gambling Behavior",
-                a: "<p>Examples:</p><ul><li>Random entries without analysis</li><li>Revenge trading</li><li>Emotional trading</li><li>Overtrading to recover losses</li></ul>"
-            },
-            {
-                q: "Overtrading",
-                a: "<p>Examples:</p><ul><li>Too many trades in a short time</li><li>Constant entries without confirmation</li><li>Emotion-driven execution</li></ul>"
-            },
-            {
-                q: "Tick Scalping",
-                a: "<p>Tick scalping refers to extremely fast trades capturing micro-movements.</p><p>Examples:</p><ul><li>Opening and closing trades within 120 seconds</li><li>High-frequency micro-scalping</li></ul><p>Up to 20% of total trades may be ignored. Beyond that, trades may be reviewed.</p>"
-            },
-            {
-                q: "Arbitrage Trading (Restricted)",
-                a: "<p>Opening trades to exploit price differences rather than market direction.</p><p>Example:</p><ul><li>Buy EURUSD</li><li>Sell GBPUSD to neutralize exposure.</li></ul><p>This may be treated as a violation.</p>"
-            },
-            {
-                q: "Hedging",
-                a: "<p>Improper hedging includes:</p><ul><li>Opposite trades on same instrument</li><li>Locking positions to remove exposure</li></ul>"
-            },
-            {
-                q: "Reverse Trading",
-                a: "<p>Examples:</p><ul><li>Intentionally losing trades</li><li>Offset trades across accounts</li><li>Manipulating exposure</li></ul><p>Trades placed within 15 minutes to neutralize exposure may be flagged.</p>"
-            },
-            {
-                q: "One-Sided Bias Trading",
-                a: "<p>Repeated trading in only one direction without justification may trigger review.</p>"
-            },
-            {
-                q: "News Trading",
-                a: "<p>News trading is fully allowed during both the challenge phases and the funded stage. Traders may open, close, and manage positions during:</p><ul><li>High-impact news releases</li><li>Economic announcements</li><li>Central bank speeches</li><li>Periods of increased market volatility</li></ul><p>There are no timing restrictions around news events. However, traders remain responsible for managing their own risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur during news releases. All standard account rules, including the maximum drawdown rule, still apply.</p>"
+                q: "What is the Breach System?",
+                a: "<p>The Fusion Funded uses a two-tier breach system:</p><p><strong>Soft Breach:</strong> Payout is rejected. Account is reset to initial balance. Account remains active in the same phase.</p><p><strong>Hard Breach:</strong> Account is permanently terminated.</p>"
             }
         ]
     },
@@ -1047,63 +1066,63 @@ const FAQ_DATA = {
         title: "Withdrawals & Payouts",
         questions: [
             {
-                q: "What Is the Minimum Amount Required for a Withdrawal?",
-                a: "<p>To ensure efficient processing and reduce transaction costs, The Fusion Funded applies a minimum withdrawal requirement.</p><p><strong>Minimum Withdrawal Amount:</strong></p><ul><li>Minimum Withdrawal: 1% of the initial account size</li><li>Withdrawal requests below this amount cannot be processed.</li><li>Profits and eligible balances may be combined to meet the minimum requirement.</li><li>Giveaway accounts have a withdrawal limit of 2% only.</li></ul><p><strong>Why Is There a Minimum Withdrawal Requirement?</strong></p><p>The minimum withdrawal requirement exists to:</p><ul><li>Reduce administrative and processing overhead</li><li>Minimize transaction and network fees</li><li>Ensure a smoother payout experience for all traders</li></ul><p>Larger, less frequent withdrawals help keep payout operations efficient and reliable.</p>"
+                q: "What is the minimum amount required for a withdrawal?",
+                a: "<p>Minimum Withdrawal: 1% of the initial account size. Withdrawal requests below this amount cannot be processed.</p>"
             },
             {
-                q: "What are the Withdrawal Methods?",
-                a: "<p>Available payout methods may include:</p><ul><li>Cryptocurrency (USDT and other supported crypto assets)</li><li>UPI transfers</li><li>Bank transfers</li><li>E-wallet payments (where available)</li></ul><p>Payment options may vary depending on location, availability, and payout method selected by the trader.</p>"
+                q: "What are the withdrawal methods?",
+                a: "<p>Available payout methods may include Cryptocurrency (USDT and other supported assets), UPI transfers, Bank transfers, and E-wallets (where available).</p>"
             },
             {
-                q: "Requirements Before Withdrawing?",
-                a: "<p>Before submitting a withdrawal request, make sure the following conditions are met:</p><ul><li>Your profit meets the minimum withdrawal requirement of 1% of the initial account size</li><li>You have completed at least 5 trading days on the funded account</li><li>KYC verification is completed and approved</li><li>All trading rules and profit-split conditions are met</li><li>No active violations or restrictions exist on your account</li><li>The account balance is above the starting balance</li></ul><p><strong>Important Withdrawal Rule:</strong></p><p>Once a withdrawal request is submitted, no trading activity is allowed on the account. Placing any trade after requesting a payout will be treated as a hard breach, and the account may be terminated.</p>"
+                q: "What are the requirements before withdrawing?",
+                a: "<p>Before submitting a withdrawal request, the following conditions must be met:</p><ul><li>Minimum profit of 1% of account size is achieved</li><li>Minimum trading days requirement is completed (12 days or 7 days with add-on)</li><li>KYC verification is completed and approved</li><li>All trading rules are followed</li><li>No active violations are present</li><li>Account is in profit and above initial balance</li></ul><p><strong>Important Rule:</strong> Once a withdrawal request is submitted: No further trading activity is allowed. Placing trades after requesting a payout will be treated as a violation and may lead to account termination.</p>"
             },
             {
-                q: "How Long Does It Take to Receive a Withdrawal?",
-                a: "<p>The Fusion Funded processes withdrawal requests on a weekly payout cycle while ensuring all compliance and security checks are completed.</p><p><strong>Withdrawal Processing Time:</strong></p><p>Payout Processing Day: Wednesday. All approved withdrawal requests are processed on Wednesday each week. Once processed, the time required for funds to arrive depends on the selected payout method (crypto, UPI, bank transfer, or e-wallet). Most payouts are completed within 24–48 hours after Wednesday processing.</p><p><strong>Possible Delays:</strong></p><p>In some cases, withdrawals may take longer due to: Weekends, Public holidays, Banking hours or payment provider schedules, Additional compliance or security checks.</p><p><strong>When Does the Processing Time Start?</strong></p><p>Withdrawal processing begins once: A withdrawal request is submitted, KYC verification is fully approved, The trader has completed at least 5 trading days on the funded account, The account meets the minimum withdrawal requirement (1% of initial balance), The account passes all risk and compliance checks, No trades are placed after the withdrawal request.</p>"
-            }
-        ]
-    },
-    compliance: {
-        title: "KYC & Verification",
-        questions: [
-            {
-                q: "Why Is Completing KYC Necessary for My Account?",
-                a: "<p>Completing the Know Your Customer (KYC) process is a mandatory step to maintain a secure, fair, and compliant trading environment at The Fusion Funded.</p><p><strong>1. Legal & Regulatory Compliance:</strong> To comply with international regulations designed to prevent fraud, money laundering, identity misuse, and financial crime.</p><p><strong>2. Account Security & Protection:</strong> Adds an additional layer of security by linking trading accounts to verified personal information.</p><p><strong>3. Fair Trading Environment:</strong> Ensures that one individual does not operate multiple accounts and prevents duplicate or fraudulent accounts.</p><p><strong>4. Payout Eligibility:</strong> KYC verification must be completed before any payout request can be processed.</p>"
+                q: "Payout Cycle and Profit Split",
+                a: "<p>The Fusion Funded operates on a structured payout system.</p><p><strong>Payout Cycle:</strong> 18 days. Traders become eligible to request payouts after completing the payout cycle and meeting all requirements.</p><p><strong>Profit Split Structure:</strong> Traders can earn 60% → 70% → 80% → 90% profit split. The Fusion Funded is among the few firms offering 60% profit split from the first payout, with scaling opportunities for higher payouts.</p>"
             },
             {
-                q: "What Documents Are Required for KYC Verification?",
-                a: "<p>To complete KYC verification, traders must submit valid documents confirming their identity and residential address.</p><p><strong>Personal Identification (Required):</strong> You must submit one valid government-issued photo ID.</p><ul><li>Passport (preferred)</li><li>Driver’s License</li><li>National ID Card</li></ul><p><strong>Important Requirements:</strong></p><ul><li>The document must be valid and not expired</li><li>The photo and personal details must be clear and readable</li><li>The name on the ID must match the name on your The Fusion Funded account</li></ul>"
-            },
-            {
-                q: "How Long Does KYC Verification Take?",
-                a: "<p><strong>Instant Verification:</strong> In some cases, KYC may be approved instantly when documents are clear, valid, and meet all requirements.</p><p><strong>Standard Verification:</strong> Most KYC checks are completed within 1–2 business days after document submission.</p><p><strong>What Can Affect Verification Time?</strong></p><ul><li>Documents are blurry or cropped</li><li>Information does not match account details</li><li>Documents are expired or incomplete</li><li>Additional verification checks are required</li></ul><p><strong>If Verification Takes Longer Than Expected:</strong> Check your email for follow-up requests, confirm all required documents were submitted, or contact support for assistance.</p>"
-            },
-            {
-                q: "What Happens If My KYC Application Is Rejected?",
-                a: "<p>If your KYC application is rejected, it does not mean you are permanently disqualified. Rejections usually occur due to missing, unclear, or mismatched information and can typically be resolved quickly.</p><p><strong>Common Reasons for KYC Rejection:</strong> Blurry/low quality documents, expired documents, mismatched name/address, missing/incomplete documents, suspicious activity.</p><p><strong>What Happens After a Rejection?</strong></p><ul><li><strong>Rejection Notification:</strong> You will receive an email explaining the reason.</li><li><strong>Resubmission Opportunity:</strong> You will be allowed to resubmit corrected documents.</li></ul><p><strong>How Long Does Re-Verification Take?</strong> Typically 1–2 business days.</p><p><strong>How to Avoid KYC Rejection:</strong> Upload high-quality images, ensure documents are valid, double-check that names and addresses match exactly, submit complete documents.</p>"
+                q: "How long does it take to receive a withdrawal?",
+                a: "<p>Once a withdrawal request is submitted, it is reviewed and processed after eligibility conditions are met. After approval, funds are processed and delivered as soon as possible, depending on the selected payout method. Processing times may vary based on payment method, network conditions, and provider timelines. Delays may occur due to weekends, holidays, or additional verification checks. All payouts are processed securely and efficiently.</p>"
             }
         ]
     },
     operations: {
-        title: "Account Security & Access Rules",
+        title: "Operations & Support",
         questions: [
             {
+                q: "How does account operation work?",
+                a: "<p>Please refer to the KYC & Compliance section for details about account access, security, and inactivity rules.</p>"
+            }
+        ]
+    },
+    compliance: {
+        title: "KYC & Security",
+        questions: [
+            {
+                q: "Why is KYC required for my account?",
+                a: "<p>Completing KYC is mandatory for:</p><ol><li><strong>Legal & Regulatory Compliance:</strong> Prevents fraud, money laundering, identity misuse.</li><li><strong>Account Security & Protection:</strong> Prevents unauthorized access and identity theft.</li><li><strong>Fair Trading Environment:</strong> Ensures one individual does not operate multiple accounts.</li><li><strong>Payout Eligibility:</strong> Verification must be completed before any payout request.</li></ol>"
+            },
+            {
+                q: "What documents are required for KYC?",
+                a: "<p>Submit one valid government-issued photo ID:</p><ul><li>Passport (preferred)</li><li>Driver’s License</li><li>National ID Card</li></ul><p>The document must be valid and not expired, details must be clear, and the name must match the account details exactly.</p>"
+            },
+            {
                 q: "What is the IP Address Policy?",
-                a: "<p>There is No IP address location restrictions for traders. Traders may access their accounts from different locations, devices, or networks without violating account rules.</p><p><strong>Account Access & Security:</strong></p><p>While there are no IP region restrictions, traders remain responsible for maintaining account security. The following practices are still prohibited:</p><ul><li>Account sharing</li><li>Unauthorized third-party access</li><li>Selling or transferring account access</li><li>Using compromised or stolen identities</li></ul><p>If suspicious account activity is detected, the Risk Management Team may request identity verification to protect the account.</p><p><strong>Important Notes:</strong></p><ul><li>Traders may travel and trade freely without notifying support</li><li>Logging in from different networks or locations is allowed</li><li>Using different devices is allowed</li><li>Basic account security monitoring still applies</li></ul>"
+                a: "<p>There are no strict IP location restrictions for traders. Traders may access their accounts from different locations, devices, or networks. Logging in from multiple locations is allowed.</p><p>However, the following are strictly prohibited: Account sharing, Unauthorized third-party access, Selling or transferring account access, Use of compromised or stolen identities. Standard security monitoring still applies.</p>"
             },
             {
                 q: "What is the Inactivity Policy?",
-                a: "<p>To ensure active participation and proper account usage, The Fusion Funded enforces an inactivity rule across all account stages.</p><p><strong>Inactivity Rule:</strong></p><p>If a trading account remains inactive for 14 consecutive days, it will be treated as a hard breach, and the account will be terminated.</p><p>This rule applies to: Challenge accounts and Funded accounts.</p><p><strong>What Counts as Inactivity?</strong></p><ul><li>No trades are placed</li><li>No trading activity occurs</li><li>The account remains idle for 14 continuous days</li></ul><p><strong>How to Avoid Inactivity Breach:</strong></p><ul><li>Place at least one trade within every 14-day period</li><li>Maintain regular trading activity</li></ul>"
+                a: "<p>If a trading account remains inactive for 14 consecutive days, it will be considered a violation and may result in account termination. To avoid this, place at least one trade within every 14-day period to maintain regular account activity.</p>"
             }
         ]
     },
     refunds: {
-        title: "Refund Policies",
+        title: "Refund Policy",
         questions: [
             {
-                q: "What is the Refund Policy?",
-                a: "<p>Evaluation fees are not refunded immediately after purchase. However, The Fusion Funded refunds the full challenge fee once a trader successfully completes the evaluation and demonstrates consistent performance on the funded account.</p><p>The challenge fee is refunded with the fourth payout from the funded account.</p><p><strong>To qualify for the refund:</strong></p><ul><li>The trader must reach the funded stage</li><li>The trader must receive four successful payouts</li><li>All trading rules must be followed</li><li>The account must remain in good standing</li></ul><p><strong>When Refunds Are Not Eligible:</strong></p><ul><li>Failed evaluations</li><li>Rule violations</li><li>Account termination</li><li>Inactivity breaches</li><li>Payment disputes or chargebacks</li><li>Personal trading losses or mistakes</li></ul><p><strong>Career Program Opportunity:</strong> Traders who demonstrate consistent performance may qualify for The Fusion Funded Career Program.</p>"
+                q: "What is the refund policy?",
+                a: "<p>Evaluation fees are not refunded immediately after purchase. The Fusion Funded offers a performance-based refund system. The challenge fee can be refunded once the trader:</p><ul><li>Successfully reaches the funded stage</li><li>Completes four successful payouts</li><li>Maintains compliance with all trading rules</li><li>Keeps the account in good standing</li></ul><p><strong>Add-On Requirement:</strong> Refund eligibility is only available for traders who have selected the refund add-on at the time of purchase. The refund is processed along with the fourth payout.</p><p>Refunds will not be issued for failed challenges, rule violations, account termination, inactivity breaches, payment disputes, or trading losses.</p>"
             }
         ]
     }
@@ -1123,7 +1142,7 @@ window.showFaqCategory = function (category) {
     data.questions.forEach((item, index) => {
         html += `
             <div class="faq-expandable" id="faq-${category}-${index}">
-                <div class="faq-question" onclick="toggleFaqAnswer('${category}', ${index})">
+                <div class="faq-question" onclick="showArticle('${category}', ${index})">
                     <span>${item.q}</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1318,15 +1337,6 @@ window.showSearchResult = function (category, index) {
     helpSearchInput.value = '';
     helpSearchResults.style.display = 'none';
 
-    // Show the category with the specific question expanded
-    showFaqCategory(category);
-
-    // Expand the specific question
-    setTimeout(() => {
-        const faqItem = document.getElementById(`faq-${category}-${index}`);
-        if (faqItem) {
-            faqItem.classList.add('active');
-            faqItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }, 100);
+    // Open the article directly
+    showArticle(category, index);
 };

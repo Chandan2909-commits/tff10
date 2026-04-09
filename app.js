@@ -1,26 +1,20 @@
-/* ============================================================
-   THE FUSION FUNDED — app.js
-   ============================================================ */
+﻿
 
 (function () {
   'use strict';
 
-  /* ===================================================
-     1. FRAME ANIMATION ENGINE
-        Uses the 193 frames as a canvas-drawn animation
-        with parallax scroll effect
-     =================================================== */
+  
   const FIRST_FRAME = 88;
   const TOTAL_FRAMES = 193;
   const FRAME_BASE = './parallax_asset/ezgif-frame-';
   const FPS = 24;
 
-  // Preload all frames
+  
   const frames = [];
   let framesLoaded = 0;
   let animationReady = false;
   let currentFrame = 0;
-  let targetFrame = 0;       // scroll sets this; RAF lerps toward it
+  let targetFrame = 0;       
   let isParallaxMode = false;
 
   function padNum(n) {
@@ -51,7 +45,7 @@
     }
   }
 
-  /* ---------- Hero Canvas ---------- */
+  
   const heroCanvas = document.getElementById('hero-canvas');
   const heroCtx = heroCanvas ? heroCanvas.getContext('2d') : null;
   if (heroCtx) { heroCtx.imageSmoothingEnabled = true; heroCtx.imageSmoothingQuality = 'high'; }
@@ -80,7 +74,7 @@
     heroCtx.drawImage(img, sx, sy, sw, sh);
   }
 
-  /* ---------- Divider Canvas ---------- */
+  
   const dividerCanvas = document.getElementById('divider-canvas');
   const dividerCtx = dividerCanvas ? dividerCanvas.getContext('2d') : null;
 
@@ -107,9 +101,7 @@
     dividerCtx.drawImage(img, sx, sy, sw, sh);
   }
 
-  /* ---------- Animation Loop ----------
-     Scroll sets targetFrame. Each RAF tick lerps currentFrame toward it,
-     only repainting when the frame actually changes.               */
+  
   let rafId = null;
   let lastDrawnFrame = -1;
 
@@ -117,7 +109,7 @@
     rafId = requestAnimationFrame(animate);
     if (!animationReady) return;
 
-    // Smooth lerp: 0.55 snaps quickly without feeling instant
+    
     const diff = targetFrame - currentFrame;
     if (Math.abs(diff) > 0.1) {
       currentFrame += diff * 0.55;
@@ -134,20 +126,20 @@
     runDividerAutoPlay(ts);
   }
 
-  /* ---------- Parallax Frame Scrub ---------- */
+  
   function handleParallaxScroll() {
     const hero = document.getElementById('hero');
     if (!hero) return;
     const heroH = hero.offsetHeight;
     const scrollY = window.scrollY;
 
-    // Get fixed elements
+    
     const canvas = document.getElementById('hero-canvas');
     const overlay = document.querySelector('.hero-overlay');
     const grid = document.querySelector('.grid-overlay');
     const scrollInd = document.querySelector('.scroll-indicator');
 
-    // Hide fixed parallax layers once user scrolls past first viewport
+    
     const visible = scrollY < window.innerHeight;
     const fadeAlpha = visible ? 1 : Math.max(0, 1 - (scrollY - window.innerHeight) / (window.innerHeight * 0.4));
     [canvas, overlay, grid].forEach(el => {
@@ -158,7 +150,7 @@
       scrollInd.style.pointerEvents = scrollY < window.innerHeight ? 'auto' : 'none';
     }
 
-    // Scrub all frames within the first viewport height of scroll
+    
     if (scrollY < heroH) {
       isParallaxMode = true;
       const scrubZone = Math.min(heroH, window.innerHeight);
@@ -169,9 +161,7 @@
     }
   }
 
-  /* ===================================================
-     2. SMOOTH SCROLL FOR NAV LINKS
-     =================================================== */
+  
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const id = link.getAttribute('href').slice(1);
@@ -182,9 +172,7 @@
     });
   });
 
-  /* ===================================================
-     3. NAVBAR SCROLL BEHAVIOR
-     =================================================== */
+  
   const navbar = document.getElementById('navbar');
 
   function handleNavbarScroll() {
@@ -194,7 +182,7 @@
       navbar.classList.remove('scrolled');
     }
 
-    // Active link update
+    
     const sections = document.querySelectorAll('section[id]');
     let current = '';
     sections.forEach(sec => {
@@ -206,9 +194,7 @@
     });
   }
 
-  /* ===================================================
-     3. HAMBURGER MOBILE MENU
-     =================================================== */
+  
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
 
@@ -230,9 +216,7 @@
     });
   }
 
-  /* ===================================================
-     4. SCROLL REVEAL — re-triggers on every enter/leave
-     =================================================== */
+  
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -251,9 +235,7 @@
     revealObs.observe(el);
   });
 
-  /* ===================================================
-     5. COUNTER ANIMATION
-     =================================================== */
+  
   function formatStat(num, prefix, suffix) {
     if (num >= 1000000) return prefix + (num / 1000000).toFixed(1) + 'M' + suffix;
     if (num >= 1000) return prefix + (num / 1000).toFixed(0) + 'K' + suffix;
@@ -275,7 +257,7 @@
       function update(now) {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        // Ease out expo
+        
         const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
         const val = Math.floor(eased * target);
         valueEl.textContent = formatStat(val, prefix, suffix);
@@ -289,16 +271,14 @@
 
   document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
-  /* ===================================================
-     5b. COMPARE SECTION — RE-TRIGGER ANIMATION ON EVERY ENTER/LEAVE
-     =================================================== */
+  
   const compareGlassWrap = document.querySelector('.compare-glass-wrap');
   if (compareGlassWrap) {
     new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           compareGlassWrap.classList.add('revealed');
-          // Re-trigger border draw animation
+          
           const rect = compareGlassWrap.querySelector('.compare-border-rect');
           if (rect) {
             rect.style.animation = 'none';
@@ -312,9 +292,7 @@
     }, { threshold: 0.2 }).observe(compareGlassWrap);
   }
 
-  /* ===================================================
-     6. PLAN TAB SWITCHING
-     =================================================== */
+  
   const planTabs = document.querySelectorAll('.plan-tab');
   const planWraps = document.querySelectorAll('.plan-table-wrap');
 
@@ -328,23 +306,21 @@
     });
   });
 
-  /* ===================================================
-     7. SMOOTH PARALLAX for DIVIDER + AUTO FRAME PLAY
-     =================================================== */
+  
   let dividerAutoPlay = false;
   let dividerFrame = 0;
   let lastDividerTime = 0;
   const DIVIDER_FPS = 24;
   const DIVIDER_FRAME_DURATION = 1000 / DIVIDER_FPS;
 
-  // IntersectionObserver — start/stop auto-play when divider enters/leaves view
+  
   const dividerSection = document.querySelector('.parallax-divider');
   if (dividerSection) {
     new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           dividerAutoPlay = true;
-          dividerFrame = 0;        // always restart from frame 0
+          dividerFrame = 0;        
           lastDividerTime = 0;
         } else {
           dividerAutoPlay = false;
@@ -358,7 +334,7 @@
     if (ts - lastDividerTime >= DIVIDER_FRAME_DURATION) {
       lastDividerTime = ts;
       drawDividerFrame(dividerFrame);
-      dividerFrame = (dividerFrame + 1) % FRAME_COUNT;  // loop
+      dividerFrame = (dividerFrame + 1) % FRAME_COUNT;  
     }
   }
 
@@ -373,9 +349,7 @@
     }
   }
 
-  /* ===================================================
-     8. NEON CURSOR TRAIL
-     =================================================== */
+  
   const trailCanvas = document.createElement('canvas');
   trailCanvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999;width:100%;height:100%;';
   document.body.appendChild(trailCanvas);
@@ -410,9 +384,7 @@
     requestAnimationFrame(drawTrail);
   }
 
-  /* ===================================================
-     9. INIT
-     =================================================== */
+  
   window.addEventListener('resize', () => {
     resizeHeroCanvas();
     resizeDividerCanvas();
@@ -426,12 +398,12 @@
     handleDividerParallax();
   }, { passive: true });
 
-  // Initial setup
+  
   resizeHeroCanvas();
   resizeDividerCanvas();
   handleNavbarScroll();
 
-  // Show loading state then begin
+  
   preloadFrames(() => {
     drawHeroFrame(0);
     drawDividerFrame(0);
@@ -439,7 +411,7 @@
     rafId = requestAnimationFrame(animate);
   });
 
-  // Graceful fallback
+  
   setTimeout(() => {
     if (!animationReady) {
       animationReady = true;
@@ -449,9 +421,7 @@
 
   drawTrail();
 
-  /* ===================================================
-     10. BREATHING GRADIENT — autonomous, mouse softly distorts
-     =================================================== */
+  
   (function initLiquidBg() {
     const canvas = document.getElementById('liquid-bg');
     if (!canvas) return;
@@ -461,7 +431,7 @@
     let targetX = 0.5, targetY = 0.5;
     let smoothX = 0.5, smoothY = 0.5;
 
-    // Each orb breathes autonomously; mouse adds a tiny nudge
+    
     const orbs = [
       { bx:0.18, by:0.22, r:0.55, color:[0,180,255],  a:0.22, speed:0.00018, phase:0,   influence:0.04 },
       { bx:0.82, by:0.35, r:0.50, color:[0,80,220],   a:0.18, speed:0.00022, phase:2.1, influence:0.03 },
@@ -484,20 +454,20 @@
 
     function draw(ts) {
       const t = ts * 0.001;
-      // Very slow mouse lerp — subtle distortion only
+      
       smoothX += (targetX - smoothX) * 0.012;
       smoothY += (targetY - smoothY) * 0.012;
 
       ctx.clearRect(0, 0, W, H);
 
       orbs.forEach(o => {
-        // Autonomous breathing drift
+        
         const drift  = Math.sin(t * o.speed * 1000 + o.phase);
         const drift2 = Math.cos(t * o.speed * 800  + o.phase + 1);
-        // Breathing scale + alpha pulse
+        
         const breathe = 1 + 0.10 * Math.sin(t * o.speed * 600 + o.phase + 2);
         const alphaPulse = o.a * (0.7 + 0.3 * Math.sin(t * o.speed * 400 + o.phase + 3));
-        // Mouse adds only a tiny nudge on top of the autonomous motion
+        
         const mx = o.bx + drift * 0.12 + (smoothX - 0.5) * o.influence;
         const my = o.by + drift2 * 0.10 + (smoothY - 0.5) * o.influence;
         const cx = mx * W, cy = my * H;
@@ -518,9 +488,7 @@
     requestAnimationFrame(draw);
   })();
 
-  /* ===================================================
-     11. FULL-PAGE CIRCUIT BOARD BACKGROUND
-     =================================================== */
+  
   (function initCircuitBg() {
     const canvas = document.getElementById('circuit-bg');
     if (!canvas) return;
@@ -610,12 +578,11 @@
 
 })();
 
-// ===== TRADER STORIES SLIDER =====
 (function () {
   var wrap = document.getElementById('ts-track') && document.getElementById('ts-track').parentElement;
   if (!wrap) return;
 
-  // Mouse drag to scroll on desktop
+  
   var isDown = false, startX = 0, scrollLeft = 0;
 
   wrap.addEventListener('mousedown', function (e) {
@@ -635,7 +602,7 @@
     wrap.scrollLeft = scrollLeft - (x - startX);
   });
 
-  // Arrow buttons
+  
   var prevBtn = document.getElementById('ts-prev');
   var nextBtn = document.getElementById('ts-next');
   var cards = document.querySelectorAll('#ts-track .ts-card');

@@ -1,10 +1,5 @@
-/* ============================================================
-   THE FUSION FUNDED — contact_us.js
-   Standalone JS for the Contact Us page.
-   Mirrors interaction patterns from the main app.js.
-   ============================================================ */
+﻿
 
-/* ---- Neon Cursor Trail (matches main site) ---- */
 (function initCursorTrail() {
   const trailCanvas = document.createElement('canvas');
   trailCanvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999;width:100%;height:100%;';
@@ -45,7 +40,6 @@
   drawTrail();
 })();
 
-/* ---- Navbar scroll effect ---- */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
@@ -55,7 +49,6 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-/* ---- Hamburger / Mobile Menu ---- */
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
@@ -77,9 +70,6 @@ if (hamburger) {
   });
 }
 
-/* ===================================================
-   GLOBAL LIQUID GRADIENT BG — autonomous, mouse softly distorts
-   =================================================== */
 (function initLiquidBg() {
   const canvas = document.getElementById('liquid-bg');
   if (!canvas) return;
@@ -89,7 +79,7 @@ if (hamburger) {
   let targetX = 0.5, targetY = 0.5;
   let smoothX = 0.5, smoothY = 0.5;
 
-  // Each orb breathes autonomously; mouse adds a tiny nudge
+  
   const orbs = [
     { bx:0.18, by:0.22, r:0.55, color:[0,180,255],  a:0.22, speed:0.00018, phase:0,   influence:0.04 },
     { bx:0.82, by:0.35, r:0.50, color:[0,80,220],   a:0.18, speed:0.00022, phase:2.1, influence:0.03 },
@@ -112,20 +102,20 @@ if (hamburger) {
 
   function draw(ts) {
     const t = ts * 0.001;
-    // Very slow mouse lerp — subtle distortion only
+    
     smoothX += (targetX - smoothX) * 0.012;
     smoothY += (targetY - smoothY) * 0.012;
 
     ctx.clearRect(0, 0, W, H);
 
     orbs.forEach(o => {
-      // Autonomous breathing drift
+      
       const drift  = Math.sin(t * o.speed * 1000 + o.phase);
       const drift2 = Math.cos(t * o.speed * 800  + o.phase + 1);
-      // Breathing scale + alpha pulse
+      
       const breathe = 1 + 0.10 * Math.sin(t * o.speed * 600 + o.phase + 2);
       const alphaPulse = o.a * (0.7 + 0.3 * Math.sin(t * o.speed * 400 + o.phase + 3));
-      // Mouse adds only a tiny nudge on top of the autonomous motion
+      
       const mx = o.bx + drift * 0.12 + (smoothX - 0.5) * o.influence;
       const my = o.by + drift2 * 0.10 + (smoothY - 0.5) * o.influence;
       const cx = mx * W, cy = my * H;
@@ -146,7 +136,6 @@ if (hamburger) {
   requestAnimationFrame(draw);
 })();
 
-/* ---- Scroll Reveal ---- */
 (function initReveal() {
   const els = document.querySelectorAll('[data-reveal], [data-reveal-right]');
   if (!els.length) return;
@@ -163,13 +152,12 @@ if (hamburger) {
   els.forEach(el => io.observe(el));
 })();
 
-/* ---- Contact Form Submission ---- */
 (function initForm() {
   const form     = document.getElementById('contact-form');
   const feedback = document.getElementById('form-feedback');
   const submitBtn= document.getElementById('btn-submit');
 
-  const CONTACT_URL = 'https://script.google.com/macros/s/AKfycbxR48jw8ydufaAvaK5g6Hg5ha9G-4OCnDz1ODyTNNKxN7zizZ1qWy18VcOtA30H9yLEtQ/exec';
+  const CONTACT_URL = 'https://script.google.com/macros/s/AKfycbwYBJjx3JbVRZIQ5S-0mZAMGcHDLqVmw-5OnQz5OEK-z9tL3hdAMOALtU6dn_fYMRX5Rg/exec';
 
   if (!form) return;
 
@@ -183,6 +171,7 @@ if (hamburger) {
     const email     = form.email.value.trim();
     const subject   = form.subject ? form.subject.value.trim() : '';
     const message   = form.message.value.trim();
+    const phone     = form.phone ? form.phone.value.trim() : '';
 
     if (!firstName || !lastName || !email || !message) {
       feedback.textContent = '⚠ Please fill in all required fields.';
@@ -204,7 +193,8 @@ if (hamburger) {
       + '&lastName='  + encodeURIComponent(lastName)
       + '&email='     + encodeURIComponent(email)
       + '&subject='   + encodeURIComponent(subject)
-      + '&message='   + encodeURIComponent(message);
+      + '&message='   + encodeURIComponent(message)
+      + '&phone='     + encodeURIComponent(phone);
 
     fetch(CONTACT_URL + params, { method: 'GET', mode: 'no-cors' })
       .finally(function() {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -312,10 +312,10 @@
 
 <body>
 
-  <!-- ===== GLOBAL LIQUID GRADIENT BG ===== -->
+  
   <canvas id="liquid-bg"></canvas>
 
-  <!-- ===== NAVBAR ===== -->
+  
   <nav id="navbar">
     <div class="nav-inner">
       <div class="nav-logo" id="nav-logo" onclick="window.location.href='index.html';">
@@ -339,12 +339,12 @@
     </div>
   </nav>
 
-  <!-- ===== FLOATING GRADIENT ORBS ===== -->
+  
   <div class="gradient-orb orb-1"></div>
   <div class="gradient-orb orb-2"></div>
   <div class="gradient-orb orb-3"></div>
 
-  <!-- ===== TRADING RULES HERO ===== -->
+  
   <section class="rules-hero container">
     <div class="rules-hero-container">
       <div class="rules-hero-content" data-reveal-left>
@@ -367,7 +367,7 @@
     </div>
   </section>
 
-  <!-- ===== HELP SECTION (GRID) ===== -->
+  
   <section class="container">
     <div class="help-section" data-reveal>
       <h2 class="help-title">Hi there, what do you need help with today?</h2>
@@ -384,7 +384,7 @@
       </div>
 
       <div class="rules-grid">
-        <!-- Card 1 -->
+        
         <a href="trading_rules_detail.html?category=about"
           style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
@@ -410,7 +410,7 @@
           </div>
         </a>
 
-        <!-- Card 2 -->
+        
         <a href="trading_rules_detail.html?category=rules"
           style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
@@ -434,7 +434,7 @@
           </div>
         </a>
 
-        <!-- Card 3 -->
+        
         <a href="trading_rules_detail.html?category=kyc" style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
             <div class="rule-icon">
@@ -458,7 +458,7 @@
           </div>
         </a>
 
-        <!-- Card 4 -->
+        
         <a href="trading_rules_detail.html?category=withdrawals"
           style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
@@ -482,7 +482,7 @@
           </div>
         </a>
 
-        <!-- Card 5 -->
+        
         <a href="trading_rules_detail.html?category=weekend"
           style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
@@ -506,7 +506,7 @@
           </div>
         </a>
 
-        <!-- Card 6 -->
+        
         <a href="trading_rules_detail.html?category=security"
           style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
@@ -530,7 +530,7 @@
           </div>
         </a>
 
-        <!-- Card 7 -->
+        
         <a href="trading_rules_detail.html?category=refund"
           style="text-decoration: none; color: inherit; display: block;">
           <div class="rule-card">
@@ -557,7 +557,7 @@
     </div>
   </section>
 
-  <!-- ===== LONG FOOTER ===== -->
+  
   <footer class="footer long-footer">
     <div class="footer-glow"></div>
     <div class="footer-gradient-shape"></div>
@@ -610,7 +610,7 @@
         </div>
       </div>
 
-      <!-- Risk Disclaimer -->
+      
       <div class="footer-disclaimer">
         <h5>Risk Disclosure</h5>
         <p>Trading in financial instruments carries a high level of risk to your capital, with the possibility of losing
@@ -624,14 +624,10 @@
           performance is not indicative of future real-world results.</p>
       </div>
 
-      <!-- Bottom Bar -->
+      
       <div class="footer-bottom">
         <p>&copy; 2024 The Fusion Funded. All Rights Reserved.</p>
-        <!-- <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Risk Disclosure</a>
-        </div> -->
+        
       </div>
     </div>
   </footer>
@@ -709,7 +705,6 @@
               contentHtml = contentHtml.substring(0, 100) + '...';
             }
 
-            // Highlight match
             const regex = new RegExp(`(${val})`, 'gi');
             titleHtml = titleHtml.replace(regex, `<span style="color: #00d4ff;">$1</span>`);
             contentHtml = contentHtml.replace(regex, `<span style="color: #00d4ff;">$1</span>`);
@@ -741,10 +736,10 @@
       });
     }
   </script>
-    <!-- Chat Widget -->
+    
     <div class="chat-container">
         <div class="chat-messages">
-            <!-- Home Tab Content -->
+            
             <div class="tab-content" id="home-tab">
                 <div class="home-hero">
                     <img src="logo.png" alt="Logo" class="chat-logo">
@@ -804,13 +799,13 @@
                 </div>
             </div>
 
-            <!-- Messages Tab Content -->
+            
             <div class="tab-content" id="messages-tab" style="display: none;">
             </div>
 
-            <!-- Help Tab Content -->
+            
             <div class="tab-content" id="help-tab" style="display: none;">
-                <!-- Search Bar -->
+                
                 <div class="help-search-container">
                     <div class="help-search-wrapper">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -824,7 +819,7 @@
                     </div>
                 </div>
 
-                <!-- Search Results -->
+                
                 <div class="help-search-results" id="help-search-results" style="display: none;"></div>
 
                 <div class="help-content" id="help-main">
@@ -882,10 +877,10 @@
                     </div>
                 </div>
 
-                <!-- Category View -->
+                
                 <div class="help-category" id="help-category" style="display: none;"></div>
 
-                <!-- Article View -->
+                
                 <div class="help-article" id="help-article" style="display: none;"></div>
             </div>
         </div>
@@ -923,7 +918,7 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
+        
         <div class="chat-bottom-nav">
             <button class="nav-item active" data-tab="home">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -955,7 +950,7 @@
         </div>
     </div>
 
-    <!-- Launcher Button -->
+    
     <button id="chat-launcher" class="chat-launcher" aria-label="Open Chat">
         <div class="launcher-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

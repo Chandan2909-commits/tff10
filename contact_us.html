@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="contact_us.css?v=2" />
   <style>
-    /* ---- base hidden state ---- */
+    
     .ca-fade-up {
       opacity: 0;
       transform: translateY(70px) scale(0.95);
@@ -36,7 +36,7 @@
       transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), filter 0.85s ease;
     }
 
-    /* ---- visible state ---- */
+    
     .ca-fade-up.ca-visible,
     .ca-fade-left.ca-visible,
     .ca-fade-right.ca-visible {
@@ -45,7 +45,7 @@
       filter: blur(0);
     }
 
-    /* ---- stagger delays for quick cards ---- */
+    
     #card-email {
       transition-delay: 0s;
     }
@@ -67,10 +67,10 @@
 
 <body>
 
-  <!-- ===== GLOBAL LIQUID GRADIENT BG ===== -->
+  
   <canvas id="liquid-bg"></canvas>
 
-  <!-- ===== NAVBAR ===== -->
+  
   <nav id="navbar">
     <div class="nav-inner">
       <div class="nav-logo" id="nav-logo" onclick="window.location.href='index.html';">
@@ -92,10 +92,7 @@
     </div>
   </nav>
 
-
-
-
-  <!-- ===== PAGE HERO ===== -->
+  
   <section class="page-hero" id="page-hero">
     <div class="page-hero-content ca-fade-up">
       <div class="hero-badge">
@@ -114,7 +111,7 @@
     </div>
   </section>
 
-  <!-- ===== QUICK CONTACT CARDS ===== -->
+  
   <section class="section quick-contact-section">
     <div class="section-bg-glow quick-glow"></div>
     <div class="container" style="max-width: 1550px;">
@@ -200,13 +197,13 @@
     </div>
   </section>
 
-  <!-- ===== CONTACT FORM + INFO ===== -->
+  
   <section class="section contact-main-section" id="contact-form-section">
     <div class="section-bg-glow contact-main-glow"></div>
     <div class="container">
       <div class="contact-layout">
 
-        <!-- LEFT: Form -->
+        
         <div class="contact-form-wrap ca-fade-left">
           <div class="section-header-left">
             <span class="section-tag">Send a Message</span>
@@ -243,6 +240,7 @@
                 <option value="" disabled selected>Select a topic…</option>
                 <option value="account">Account Support</option>
                 <option value="payout">Payout Inquiry</option>
+                <option value="Weekend Holding Permission">Weekend Holding Permission</option>
                 <option value="challenge">Challenge Rules</option>
                 <option value="technical">Technical Issues</option>
                 <option value="partnership">Partnership</option>
@@ -263,12 +261,12 @@
               </svg>
             </button>
 
-            <!-- Success / Error feedback -->
+            
             <div class="form-feedback" id="form-feedback" aria-live="polite"></div>
           </form>
         </div>
 
-        <!-- RIGHT: Info + Map -->
+        
         <div class="contact-info-wrap ca-fade-right">
 
           <div class="contact-info-block">
@@ -330,7 +328,7 @@
             </div>
           </div>
 
-          <!-- Social channels -->
+          
           <div class="info-social-block">
             <p class="info-social-label">Find us on</p>
             <div class="info-social-row">
@@ -366,14 +364,12 @@
     </div>
   </section>
 
-
-
-  <!-- ===== FLOATING GRADIENT ORBS ===== -->
+  
   <div class="gradient-orb orb-1"></div>
   <div class="gradient-orb orb-2"></div>
   <div class="gradient-orb orb-3"></div>
 
-  <!-- ===== FOOTER ===== -->
+  
   <footer class="footer long-footer">
     <div class="footer-glow"></div>
     <div class="footer-gradient-shape"></div>
@@ -441,16 +437,12 @@
 
       <div class="footer-bottom">
         <p>&copy; 2024 The Fusion Funded. All Rights Reserved.</p>
-        <!-- <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Risk Disclosure</a>
-        </div> -->
+        
       </div>
     </div>
   </footer>
 
-  <!-- WhatsApp Float -->
+  
   <a href="https://wa.me/message/M3FHBYUPELBIJ1" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"
     id="whatsapp-float">
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -477,10 +469,10 @@
       });
     })();
   </script>
-  <!-- Chat Widget -->
+  
   <div class="chat-container">
     <div class="chat-messages">
-      <!-- Home Tab Content -->
+      
       <div class="tab-content" id="home-tab">
         <div class="home-hero">
           <img src="logo.png" alt="Logo" class="chat-logo">
@@ -536,13 +528,13 @@
         </div>
       </div>
 
-      <!-- Messages Tab Content -->
+      
       <div class="tab-content" id="messages-tab" style="display: none;">
       </div>
 
-      <!-- Help Tab Content -->
+      
       <div class="tab-content" id="help-tab" style="display: none;">
-        <!-- Search Bar -->
+        
         <div class="help-search-container">
           <div class="help-search-wrapper">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -556,7 +548,7 @@
           </div>
         </div>
 
-        <!-- Search Results -->
+        
         <div class="help-search-results" id="help-search-results" style="display: none;"></div>
 
         <div class="help-content" id="help-main">
@@ -614,10 +606,10 @@
           </div>
         </div>
 
-        <!-- Category View -->
+        
         <div class="help-category" id="help-category" style="display: none;"></div>
 
-        <!-- Article View -->
+        
         <div class="help-article" id="help-article" style="display: none;"></div>
       </div>
     </div>
@@ -653,7 +645,7 @@
       </div>
     </div>
 
-    <!-- Bottom Navigation -->
+    
     <div class="chat-bottom-nav">
       <button class="nav-item active" data-tab="home">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -685,7 +677,7 @@
     </div>
   </div>
 
-  <!-- Launcher Button -->
+  
   <button id="chat-launcher" class="chat-launcher" aria-label="Open Chat">
     <div class="launcher-icon">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

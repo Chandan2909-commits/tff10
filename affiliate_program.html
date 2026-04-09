@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,7 +18,7 @@
       max-width: 100%;
     }
 
-    /* Hero */
+    
     .affiliate-hero {
       padding-top: 180px;
       padding-bottom: 80px;
@@ -43,7 +43,7 @@
       letter-spacing: 2px;
     }
 
-    /* Steps Tracker */
+    
     .steps-section {
       padding: 60px 0;
       position: relative;
@@ -57,7 +57,7 @@
       position: relative;
     }
 
-    /* Connecting Line Removed */
+    
     .steps-container::before {
       display: none;
     }
@@ -155,7 +155,7 @@
         padding: 30px 16px;
       }
 
-      /* Fix hunt banner inline styles */
+      
       #hunt-banner {
         padding: 0 !important;
       }
@@ -186,18 +186,18 @@
         text-align: center !important;
       }
 
-      /* Fix step cards */
+      
       .step-card {
         padding: 30px 20px;
       }
 
-      /* Fix benefits container double padding */
+      
       .benefits-grid.container {
         padding: 0 !important;
       }
     }
 
-    /* Rewards Section */
+    
     .rewards-section {
       padding: 80px 0;
       position: relative;
@@ -256,7 +256,7 @@
       align-items: center;
     }
 
-    /* Dynamic glow based on tier */
+    
     .reward-card:nth-child(1):hover {
       border-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -327,7 +327,7 @@
       border-radius: 12px;
     }
 
-    /* Benefits */
+    
     .benefits-section {
       padding: 80px 0;
       border-top: none;
@@ -374,7 +374,7 @@
       margin-bottom: 5px;
     }
 
-    /* Terms */
+    
     .terms-section {
       padding: 60px;
       background: transparent;
@@ -402,7 +402,7 @@
       margin-bottom: 10px;
     }
 
-    /* Animations */
+    
     .animate-on-scroll {
       opacity: 0;
       transform: scale(0.85);
@@ -441,10 +441,10 @@
 
 <body>
 
-  <!-- ===== GLOBAL LIQUID GRADIENT BG ===== -->
+  
   <canvas id="liquid-bg"></canvas>
 
-  <!-- ===== NAVBAR ===== -->
+  
   <nav id="navbar">
     <div class="nav-inner">
       <div class="nav-logo" id="nav-logo" onclick="window.location.href='index.html';">
@@ -468,12 +468,12 @@
     </div>
   </nav>
 
-  <!-- ===== FLOATING GRADIENT ORBS ===== -->
+  
   <div class="gradient-orb orb-1"></div>
   <div class="gradient-orb orb-2"></div>
   <div class="gradient-orb orb-3"></div>
 
-  <!-- ===== HERO SECTION ===== -->
+  
   <section class="affiliate-hero container">
     <h1 class="affiliate-hero-title">Become an Affiliate with <br><span class="gradient-text">The Fusion Funded</span>
     </h1>
@@ -486,8 +486,7 @@
     </a>
   </section>
 
-
-  <!-- ===== BENEFITS ===== -->
+  
   <section class="container">
     <div class="benefits-section animate-on-scroll">
       <h2 class="section-heading" style="margin-bottom: 40px;">Why The Fusion Funded?</h2>
@@ -565,17 +564,17 @@
       </div>
     </div>
   </section>
-  <!-- ===== HUNT WITH US CTA BANNER ===== -->
+  
   <section id="hunt-banner" class="container" style="margin-bottom: 60px; position: relative; z-index: 2;">
     <div
       style="position:relative;border-radius:20px;padding:1.5px;background:conic-gradient(from 0deg,transparent 0deg,rgba(0,212,255,0.7) 60deg,rgba(0,80,200,0.4) 120deg,transparent 180deg,rgba(0,212,255,0.5) 240deg,transparent 300deg,transparent 360deg);animation:cgSpin 12s linear infinite;overflow:hidden;box-sizing:border-box;width:100%;">
       <div
         style="border-radius:19px;background:rgba(6,14,28,0.85);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);padding:clamp(20px,4vw,48px) clamp(16px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 8px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.07);position:relative;overflow:hidden;box-sizing:border-box;width:100%;">
-        <!-- shimmer line -->
+        
         <div
           style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent);">
         </div>
-        <!-- floating dots -->
+        
         <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
           <div
             style="position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.25);top:20%;left:25%;animation:dotFloat 6s ease-in-out infinite;">
@@ -590,20 +589,20 @@
             style="position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(255,255,255,0.15);top:75%;left:55%;animation:dotFloat 9s 3s ease-in-out infinite;">
           </div>
         </div>
-        <!-- left: headline -->
+        
         <div style="flex-shrink:0;">
           <h2
             style="font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#ffffff;line-height:1.15;margin:0;">
             Come with Us.<br>Earn with Us.</h2>
         </div>
-        <!-- center: desc -->
+        
         <div style="flex:1;min-width:0;max-width:420px;word-break:break-word;">
           <p
             style="font-family:'Inter',sans-serif;font-size:0.97rem;color:rgba(255,255,255,0.65);line-height:1.7;margin:0;">
             The industry's most aggressive affiliate program. Lifetime commissions, luxury milestone rewards, and
             on-demand payouts.</p>
         </div>
-        <!-- right: buttons -->
+        
         <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
           <a href="https://user.thefusionfunded.com/user/signup" target="_blank"
             style="display:inline-flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:14px 20px;background:transparent;color:#ffffff;border:1.5px solid rgba(255,255,255,0.35);border-radius:8px;white-space:normal;transition:all 0.3s;text-decoration:none;width:100%;box-sizing:border-box;"
@@ -626,7 +625,7 @@
     </div>
   </section>
 
-  <!-- ===== REWARDS LADDER ===== -->
+  
   <section class="rewards-section container">
     <div class="rewards-coming-overlay"><span>Rewards Coming Soon</span></div>
     <h2 class="section-heading">Our Special Rewards Framework</h2>
@@ -651,21 +650,9 @@
         <div class="reward-sales"><span>500</span> Account Sales</div>
         <div class="reward-item">Tata Tiago</div>
       </div>
-      <!-- <div class="reward-card slide-left">
-        <img class="reward-image" src="nexon_reward.png" alt="Tata Nexon">
-        <div class="reward-sales"><span>800</span> Account Sales</div>
-        <div class="reward-item">Tata Nexon</div>
-      </div> -->
-      <!-- <div class="reward-card slide-right">
-        <img class="reward-image" src="harrier_reward.png" alt="Tata Harrier">
-        <div class="reward-sales"><span>1500</span> Account Sales</div>
-        <div class="reward-item">Tata Harrier</div>
-      </div> -->
-      <!-- <div class="reward-card animate-on-scroll" style="grid-column: 1 / -1; margin-top: 20px;">
-        <img class="reward-image" src="mercedes_reward.png" style="height: 400px; width: 100%; object-fit: cover;" alt="Mercedes C-Class">
-        <div class="reward-sales" style="font-size: 1.5rem;"><span>3000</span> Account Sales</div>
-        <div class="reward-item" style="font-size: 3rem;">Mercedes (C-Class)</div>
-      </div> -->
+      
+      
+      
     </div>
   </section>
 
@@ -688,7 +675,6 @@
       </div>
     </div>
   </section>
-
 
   <style>
     #hunt-banner {
@@ -719,7 +705,7 @@
     }
   </style>
 
-  <!-- ===== LONG FOOTER ===== -->
+  
   <footer class="footer long-footer">
     <div class="footer-glow"></div>
     <div class="footer-gradient-shape"></div>
@@ -786,11 +772,7 @@
 
       <div class="footer-bottom">
         <p>&copy; 2024 The Fusion Funded. All Rights Reserved.</p>
-        <!-- <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Risk Disclosure</a>
-        </div> -->
+        
       </div>
     </div>
   </footer>
@@ -803,7 +785,7 @@
           if (entry.isIntersecting) {
             entry.target.classList.add('scrolled');
           } else {
-            // Re-apply animation when it goes out of screen and back
+
             entry.target.classList.remove('scrolled');
           }
         });
@@ -827,10 +809,10 @@
       }
     });
   </script>
-    <!-- Chat Widget -->
+    
     <div class="chat-container">
         <div class="chat-messages">
-            <!-- Home Tab Content -->
+            
             <div class="tab-content" id="home-tab">
                 <div class="home-hero">
                     <img src="logo.png" alt="Logo" class="chat-logo">
@@ -890,13 +872,13 @@
                 </div>
             </div>
 
-            <!-- Messages Tab Content -->
+            
             <div class="tab-content" id="messages-tab" style="display: none;">
             </div>
 
-            <!-- Help Tab Content -->
+            
             <div class="tab-content" id="help-tab" style="display: none;">
-                <!-- Search Bar -->
+                
                 <div class="help-search-container">
                     <div class="help-search-wrapper">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -910,7 +892,7 @@
                     </div>
                 </div>
 
-                <!-- Search Results -->
+                
                 <div class="help-search-results" id="help-search-results" style="display: none;"></div>
 
                 <div class="help-content" id="help-main">
@@ -968,10 +950,10 @@
                     </div>
                 </div>
 
-                <!-- Category View -->
+                
                 <div class="help-category" id="help-category" style="display: none;"></div>
 
-                <!-- Article View -->
+                
                 <div class="help-article" id="help-article" style="display: none;"></div>
             </div>
         </div>
@@ -1009,7 +991,7 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
+        
         <div class="chat-bottom-nav">
             <button class="nav-item active" data-tab="home">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1041,7 +1023,7 @@
         </div>
     </div>
 
-    <!-- Launcher Button -->
+    
     <button id="chat-launcher" class="chat-launcher" aria-label="Open Chat">
         <div class="launcher-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

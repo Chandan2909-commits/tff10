@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="style.css?v=3" />
   <link rel="preload" href="mobile_vid.mp4" as="video" type="video/mp4" />
   <style>
-    /* ===== PAGE LOADER ===== */
+
     #tff-loader {
       position: fixed;
       inset: 0;
@@ -123,7 +123,7 @@
 
 <body>
 
-  <!-- ===== PAGE LOADER ===== -->
+
   <div id="tff-loader">
     <div class="loader-logo">
       <span class="loader-the">THE</span>
@@ -133,10 +133,9 @@
     <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   </div>
 
-  <!-- ===== GLOBAL LIQUID GRADIENT BG ===== -->
+
   <canvas id="liquid-bg"></canvas>
 
-  <!-- ===== NAVBAR ===== -->
   <nav id="navbar">
     <div class="nav-inner">
       <div class="nav-logo" id="nav-logo" onclick="window.location.href='index.html';">
@@ -160,7 +159,6 @@
     </div>
   </nav>
 
-  <!-- ===== HERO SECTION ===== -->
   <section id="hero" class="hero-section">
     <canvas id="hero-canvas" class="hero-canvas"></canvas>
     <div class="hero-overlay"></div>
@@ -175,7 +173,7 @@
           <span class="title-line gradient-text">FUSION</span>
           <span class="title-line">FUNDED</span>
         </h1>
-        <!-- GLASS FEATURE CARDS -->
+
         <div class="hero-feature-cards">
           <div class="hero-feat-card">
             <div class="hero-feat-icon">
@@ -236,7 +234,7 @@
     </div>
   </section>
 
-  <!-- ===== FOREX TICKER ===== -->
+
   <div class="ticker-bar" id="ticker-bar">
     <div class="ticker-track">
       <div class="ticker-item"><span class="ticker-pair">EUR / USD</span><span class="ticker-price">1.03613</span><span
@@ -267,7 +265,7 @@
     </div>
   </div>
 
-  <!-- ===== HOW TO USE THIS SITE ===== -->
+
   <section id="how-to-use" class="section how-to-use-section"
     style="position:relative;overflow:hidden;background:#000;">
     <video autoplay muted loop playsinline preload="auto"
@@ -309,7 +307,6 @@
     </div>
   </section>
 
-  <!-- ===== PLANS SECTION ===== -->
   <section id="plans" class="section plans-section">
     <div class="section-bg-glow plans-glow"></div>
     <img src="bestplan_bg.png" alt="" class="deco-halo deco-halo-plans" aria-hidden="true" />
@@ -319,10 +316,10 @@
         <h2 class="section-title" style="color:#ffffff;">Select Your <span class="gradient-text">Challenge</span></h2>
         <div class="plan-table-label">HFT 2.0</div>
       </div>
-      <!-- HFT 2.0 Table -->
+
       <div class="plan-glass-wrap" id="plan-hft2">
         <div class="plan-glass-inner">
-          <!-- Header -->
+
           <div class="pgt-row pgt-head">
             <div class="pgt-cell pgt-label">ACCOUNT SIZE</div>
             <div class="pgt-cell">2.5K$</div>
@@ -332,7 +329,7 @@
             <div class="pgt-cell">50K$</div>
             <div class="pgt-cell">100K$</div>
           </div>
-          <!-- Rows -->
+
           <div class="pgt-row">
             <div class="pgt-cell pgt-label">CHALLENGE PHASE</div>
             <div class="pgt-cell">$29</div>
@@ -427,7 +424,7 @@
     </div>
   </section>
 
-  <!-- ===== KEY HIGHLIGHTS ===== -->
+
   <section id="highlights" class="section highlights-section">
     <div class="container">
       <div class="section-header" data-reveal>
@@ -465,7 +462,7 @@
     </div>
   </section>
 
-  <!-- ===== WHY TRADE WITH US ===== -->
+
   <section id="why-us" class="section why-section">
     <div class="container why-container">
       <div class="why-left">
@@ -620,7 +617,7 @@
               </linearGradient>
             </defs>
 
-            <!-- Background Grid Lines -->
+
             <path d="M 60 280 L 460 280" class="grid-line" />
             <path d="M 60 220 L 460 220" class="grid-line" />
             <path d="M 60 160 L 460 160" class="grid-line" />
@@ -631,27 +628,21 @@
             <path d="M 260 40 L 260 280" class="grid-line" />
             <path d="M 360 40 L 360 280" class="grid-line" />
 
-            <!-- Y Axis Values -->
             <text x="45" y="44" text-anchor="end" class="grid-text">$100k</text>
             <text x="45" y="104" text-anchor="end" class="grid-text">$75k</text>
             <text x="45" y="164" text-anchor="end" class="grid-text">$50k</text>
             <text x="45" y="224" text-anchor="end" class="grid-text">$25k</text>
             <text x="45" y="284" text-anchor="end" class="grid-text">$0</text>
 
-            <!-- X Axis Values -->
             <text x="60" y="310" text-anchor="middle" class="grid-text">Jan</text>
             <text x="160" y="310" text-anchor="middle" class="grid-text">Feb</text>
             <text x="260" y="310" text-anchor="middle" class="grid-text">Mar</text>
             <text x="360" y="310" text-anchor="middle" class="grid-text">Apr</text>
             <text x="460" y="310" text-anchor="middle" class="grid-text">May</text>
 
-            <!-- Axis Lines (Animated) -->
-            <!-- Y-Axis -->
             <path d="M 60 280 L 60 20" class="chart-axis" />
-            <!-- X-Axis -->
             <path d="M 60 280 L 480 280" class="chart-axis" />
 
-            <!-- Chart Area -->
             <path class="chart-area" d="M 60 280 
                      L 60 240 
                      C 140 200, 180 250, 240 160 
@@ -678,7 +669,6 @@
     </div>
   </section>
 
-  <!-- ===== PARALLAX DIVIDER ===== -->
   <div class="parallax-divider">
     <canvas id="divider-canvas" class="divider-canvas"></canvas>
     <div class="divider-overlay"></div>
@@ -688,7 +678,6 @@
     </div>
   </div>
 
-  <!-- ===== COMPARISON TABLE ===== -->
   <section id="compare" class="section compare-section">
     <div class="section-bg-glow compare-glow"></div>
     <div class="container">
@@ -697,7 +686,7 @@
       </div>
       <div class="compare-glass-wrap">
         <div class="compare-glass-inner">
-          <!-- Header row -->
+
           <div class="cg-header-row">
             <div class="cg-col-label"></div>
             <div class="cg-col-tff">
@@ -728,7 +717,6 @@
             </div>
           </div>
 
-          <!-- Rows -->
           <div class="cg-row">
             <div class="cg-col-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
@@ -818,7 +806,7 @@
     </div>
   </section>
 
-  <!-- ===== WHAT OUR CLIENTS SAY ===== -->
+
   <section id="clients-say" class="section trader-stories-section">
     <div class="ts-inner">
       <!-- Left panel -->
@@ -831,11 +819,10 @@
         <p class="ts-desc">Meet the traders who transformed their trading journey with our funding programs and turned skill into real results.</p>
         <div class="ts-dots" id="ts-dots"></div>
       </div>
-      <!-- Right scrollable panel -->
+
       <div class="ts-track-wrap">
         <div class="ts-track" id="ts-track">
 
-          <!-- Card 1 -->
           <div class="ts-card">
             <div class="ts-video-wrap" style="position:relative;cursor:pointer;" id="ts-card-1" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/wOjQARzVeyw?autoplay=1\' title=\'Trader 1\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen style=\'width:100%;height:100%;position:absolute;inset:0;\'></iframe>';">
               <img src="https://img.youtube.com/vi/wOjQARzVeyw/hqdefault.jpg" alt="Trader 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">

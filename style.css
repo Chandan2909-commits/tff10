@@ -1,15 +1,11 @@
-/* ============================================================
-   THE FUSION FUNDED — style.css
-   Theme: Black × Neon Blue Gradient
-   ============================================================ */
+﻿
 
-/* ---------- CSS Custom Properties ---------- */
 :root {
   --neon-blue: rgb(50, 49, 196);
   --neon-blue-dim: rgb(50, 49, 196);
   --neon-blue-dark: rgb(50, 49, 196);
-  /* --neon-glow: rgba(31, 31, 210, 0.4); */
-  /* --neon-glow-strong: rgba(50, 49, 196, 0.7); */
+  
+  
   --bg-black: #000000;
   --bg-dark: #030508;
   --bg-card: #070d14;
@@ -26,7 +22,6 @@
   --font-ui: 'Rajdhani', sans-serif;
 }
 
-/* ---------- Reset & Base ---------- */
 *,
 *::before,
 *::after {
@@ -49,11 +44,9 @@ body {
   overflow-x: hidden;
   max-width: 100%;
   line-height: 1.6;
+  zoom: 100%;
 }
 
-/* ============================================================
-   GLOBAL LIQUID GRADIENT CANVAS
-   ============================================================ */
 #liquid-bg {
   position: fixed;
   inset: 0;
@@ -97,7 +90,6 @@ button {
   background: none;
 }
 
-/* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -115,9 +107,6 @@ button {
   background: var(--neon-blue);
 }
 
-/* ============================================================
-   NAVBAR
-   ============================================================ */
 #navbar {
   position: fixed;
   top: 0;
@@ -141,7 +130,6 @@ button {
   min-width: 0;
 }
 
-/* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -168,7 +156,6 @@ button {
   animation: textShimmer 3s linear infinite;
 }
 
-/* Glassmorphism dark capsule pill */
 .nav-links {
   display: flex;
   align-items: center;
@@ -205,7 +192,6 @@ button {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Blue glassmorphism capsule CTA */
 .nav-cta {
   font-family: var(--font-ui);
   font-size: 1rem;
@@ -229,7 +215,6 @@ button {
   transform: translateY(-2px);
 }
 
-/* Mobile-only CTA inside nav-links — hidden on desktop */
 .nav-cta-mobile {
   display: none;
 }
@@ -250,9 +235,6 @@ button {
   box-shadow: 0 0 6px var(--neon-glow);
 }
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
 .hero-section {
   position: relative;
   width: 100%;
@@ -270,7 +252,6 @@ button {
   pointer-events: none;
 }
 
-/* Light black overlay to compensate video quality */
 .hero-overlay {
   position: fixed;
   top: 0;
@@ -508,9 +489,6 @@ button {
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
-/* ============================================================
-   SECTIONS SHARED
-   ============================================================ */
 .section {
   position: relative;
   padding: 120px 0;
@@ -532,25 +510,25 @@ button {
 .section-tag {
   display: inline-block;
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #ffffff;
   background: rgba(0, 212, 255, 0.07);
   border: 1px solid rgba(0, 212, 255, 0.2);
-  padding: 5px 16px;
+  padding: 7px 20px;
   border-radius: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
 }
 
 .section-title {
   font-family: var(--font-head);
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 18px;
-  line-height: 1.1;
+  margin-bottom: 32px;
+  line-height: 1.2;
 }
 
 .section-desc {
@@ -565,9 +543,6 @@ button {
   display: none;
 }
 
-/* ============================================================
-   SCROLL REVEAL ANIMATIONS — pristine morphing
-   ============================================================ */
 [data-reveal] {
   opacity: 0;
   transform: translateY(40px) scale(0.97);
@@ -613,9 +588,6 @@ button {
   filter: blur(0);
 }
 
-/* ============================================================
-   ABOUT SECTION
-   ============================================================ */
 .about-section {
   background: transparent;
 }
@@ -696,9 +668,6 @@ button {
   line-height: 1.7;
 }
 
-/* ============================================================
-   HOW IT WORKS
-   ============================================================ */
 .hiw-section {
   background: transparent;
 }
@@ -767,9 +736,6 @@ button {
   line-height: 1.7;
 }
 
-/* ============================================================
-   PLANS SECTION
-   ============================================================ */
 .plans-section {
   background: transparent;
   scroll-behavior: auto;
@@ -905,9 +871,6 @@ button {
   box-shadow: 0 0 20px var(--neon-glow);
 }
 
-/* ============================================================
-   STATS SECTION
-   ============================================================ */
 .stats-section {
   background: transparent;
 }
@@ -954,9 +917,6 @@ button {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   PARALLAX DIVIDER
-   ============================================================ */
 .parallax-divider {
   position: relative;
   height: 70vh;
@@ -1005,9 +965,6 @@ button {
   color: var(--text-secondary);
 }
 
-/* ============================================================
-   CONTACT SECTION
-   ============================================================ */
 .contact-section {
   background: transparent;
 }
@@ -1163,9 +1120,6 @@ button {
   color: var(--text-primary);
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
 .footer {
   position: relative;
   background: rgba(0, 0, 0, 0.85);
@@ -1280,9 +1234,6 @@ button {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   KEYFRAME ANIMATIONS
-   ============================================================ */
 @keyframes textShimmer {
   0% {
     background-position: 0% center;
@@ -1345,9 +1296,6 @@ button {
   }
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 1100px) {
   .about-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1363,9 +1311,6 @@ button {
   }
 }
 
-/* ============================================================
-   FOREX TICKER
-   ============================================================ */
 .ticker-bar {
   background: #000;
   border-top: 1px solid rgba(0, 212, 255, 0.1);
@@ -1427,9 +1372,6 @@ button {
   }
 }
 
-/* ============================================================
-   HOW TO USE THIS SITE SECTION
-   ============================================================ */
 .how-to-use-section {
   background: transparent;
   padding: 60px 0;
@@ -1522,7 +1464,6 @@ button {
   line-height: 1.6;
 }
 
-/* Phone Mockup */
 .how-to-use-right {
   display: flex;
   align-items: center;
@@ -1594,9 +1535,6 @@ button {
   }
 }
 
-/* ============================================================
-   HIGHLIGHTS SECTION (replaces old about-grid usage)
-   ============================================================ */
 .highlights-section {
   background: transparent;
 }
@@ -1609,9 +1547,6 @@ button {
   z-index: 1;
 }
 
-/* ============================================================
-   WHY US SECTION
-   ============================================================ */
 .why-section {
   background: transparent;
 }
@@ -1673,9 +1608,6 @@ button {
   margin-top: 50px;
 }
 
-/* ============================================================
-   PLAN TABS + TABLE
-   ============================================================ */
 .plan-tabs {
   display: flex;
   justify-content: center;
@@ -1712,9 +1644,6 @@ button {
   box-shadow: 0 0 20px var(--neon-glow);
 }
 
-/* ============================================================
-   PLAN TABLE — LIQUID GLASS (matches comparison table style)
-   ============================================================ */
 @property --pgt-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -1818,25 +1747,24 @@ button {
 .plan-table-label {
   display: inline-block;
   font-family: var(--font-head);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #ffffff;
   background: rgba(0, 212, 255, 0.07);
   border: 1px solid rgba(0, 212, 255, 0.25);
-  padding: 10px 32px;
+  padding: 12px 36px;
   border-radius: 100px;
   text-shadow: none;
-  margin-bottom: 32px;
+  margin-top: 16px;
+  margin-bottom: 44px;
 }
 
-/* Title badge — now unused inside table, keep rule clean */
 .plan-glass-title {
   display: none;
 }
 
-/* Rows */
 .pgt-row {
   display: grid;
   grid-template-columns: 180px repeat(6, 1fr);
@@ -1860,7 +1788,6 @@ button {
   background: rgba(0, 212, 255, 0.05);
 }
 
-/* Header row */
 .pgt-head {
   background: rgba(0, 212, 255, 0.04);
   border-bottom: 1px solid rgba(0, 212, 255, 0.1);
@@ -1882,7 +1809,6 @@ button {
   letter-spacing: 0.18em;
 }
 
-/* Cells */
 .pgt-cell {
   display: flex;
   align-items: center;
@@ -1907,7 +1833,6 @@ button {
   border-right: 1px solid rgba(0, 212, 255, 0.08);
 }
 
-/* Yes badge for news trading row */
 .pgt-badge-yes {
   display: inline-flex;
   align-items: center;
@@ -1933,9 +1858,6 @@ button {
   }
 }
 
-/* ============================================================
-   HERO FEATURE GLASS CARDS
-   ============================================================ */
 .hero-feature-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1996,9 +1918,6 @@ button {
   }
 }
 
-/* ============================================================
-   COMPARISON SECTION — LIQUID GLASS REVAMP
-   ============================================================ */
 .compare-section {
   background: transparent;
 }
@@ -2023,7 +1942,6 @@ button {
   letter-spacing: 0.04em;
 }
 
-/* ---- Animated border via rotating conic-gradient pseudo ---- */
 @property --cg-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -2036,7 +1954,7 @@ button {
   margin: 0 auto;
   border-radius: 22px;
   padding: 1.5px;
-  /* border thickness */
+  
   background: conic-gradient(from var(--cg-angle),
       transparent 0deg,
       rgba(0, 212, 255, 0.9) 60deg,
@@ -2054,7 +1972,6 @@ button {
   }
 }
 
-/* Soft outer glow that pulses */
 .compare-glass-wrap::after {
   content: '';
   position: absolute;
@@ -2079,7 +1996,6 @@ button {
   }
 }
 
-/* Liquid glass card — sits on top of the border layer */
 .compare-glass-inner {
   position: relative;
   z-index: 1;
@@ -2094,7 +2010,6 @@ button {
     inset 0 -1px 0 rgba(0, 0, 0, 0.4);
 }
 
-/* Subtle inner shimmer highlight */
 .compare-glass-inner::before {
   content: '';
   position: absolute;
@@ -2106,7 +2021,6 @@ button {
   z-index: 2;
 }
 
-/* Header row */
 .cg-header-row {
   display: grid;
   grid-template-columns: 1fr 160px 160px;
@@ -2180,7 +2094,6 @@ button {
   gap: 0;
 }
 
-/* Data rows */
 .cg-row {
   display: grid;
   grid-template-columns: 1fr 160px 160px;
@@ -2242,7 +2155,6 @@ button {
   color: #f87171;
 }
 
-/* Badges */
 .cg-badge {
   display: inline-flex;
   align-items: center;
@@ -2320,9 +2232,6 @@ button {
   }
 }
 
-/* ============================================================
-   ABOUT CONTENT
-   ============================================================ */
 .about-content {
   max-width: 800px;
   margin: 0 auto;
@@ -2380,9 +2289,6 @@ button {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   WHATSAPP FLOAT
-   ============================================================ */
 .whatsapp-float {
   position: fixed;
   bottom: 100px;
@@ -2413,9 +2319,6 @@ button {
   box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 1100px) {
   .highlights-grid {
     grid-template-columns: 1fr;
@@ -2640,8 +2543,15 @@ button {
   }
 
   .whatsapp-float {
-    padding: 14px;
+    bottom: 90px;
+    right: 14px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .cta-headline {
@@ -2682,9 +2592,6 @@ button {
   }
 }
 
-/* ============================================================
-   WHY SECTION (TWO COLUMN LAYOUT)
-   ============================================================ */
 .why-container {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -2785,11 +2692,6 @@ button {
   }
 }
 
-/* ============================================================
-   DECORATIVE IMAGES — 3D CHART & HALO
-   ============================================================ */
-
-/* --- Levitating 3D Chart --- */
 .deco-chart {
   position: absolute;
   z-index: 0;
@@ -2825,7 +2727,6 @@ button {
   }
 }
 
-/* CTA chart has its own baseline since it doesn't use translateY(-50%) */
 .deco-chart-cta {
   animation: levitateCta 4s ease-in-out infinite;
 }
@@ -2842,7 +2743,6 @@ button {
   }
 }
 
-/* --- Halo Arc Background --- */
 .deco-halo {
   position: absolute;
   z-index: 0;
@@ -2864,7 +2764,6 @@ button {
   transform: translateX(-50%);
 }
 
-/* Hide decorative images on small screens */
 @media (max-width: 900px) {
   .deco-chart {
     display: none;
@@ -2876,9 +2775,6 @@ button {
   }
 }
 
-/* ============================================================
-   FLOATING GRADIENT ORBS
-   ============================================================ */
 .gradient-orb {
   position: fixed;
   border-radius: 50%;
@@ -2959,9 +2855,6 @@ button {
   }
 }
 
-/* ============================================================
-   GET STARTED CTA SECTION
-   ============================================================ */
 .cta-section {
   background: transparent;
   position: relative;
@@ -3064,9 +2957,6 @@ button {
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
 }
 
-/* ============================================================
-   LONG FOOTER
-   ============================================================ */
 .long-footer {
   padding: 100px 0 40px;
   position: relative;
@@ -3145,9 +3035,6 @@ button {
   color: var(--neon-blue);
 }
 
-/* ============================================================
-   LONG FOOTER RESPONSIVE
-   ============================================================ */
 @media (max-width: 1100px) {
   .footer-grid-3 {
     grid-template-columns: 1fr 1fr;
@@ -3183,7 +3070,6 @@ button {
   object-fit: contain;
 }
 
-/* ===== TRADER STORIES SECTION ===== */
 .trader-stories-section {
   background: transparent;
   padding: 80px 0;
@@ -3235,7 +3121,7 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
 }
@@ -3319,8 +3205,8 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
   width: 40px;
   height: 40px;
@@ -3336,7 +3222,7 @@ button {
 }
 
 .ts-arrow:hover {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .ts-arrow-prev {
@@ -3352,32 +3238,37 @@ button {
     flex-direction: column;
     padding: 0 16px;
   }
+
   .ts-left {
     flex: none;
     width: 100%;
     padding-right: 0;
     margin-bottom: 24px;
   }
+
   .ts-track-wrap {
     width: 100%;
   }
+
   .ts-card {
     flex: 0 0 85vw;
     width: 85vw;
     scroll-snap-align: start;
   }
+
   .ts-video-wrap {
     aspect-ratio: 9/14;
   }
+
   .ts-arrow {
     display: none !important;
   }
+
   .ts-headline {
     font-size: 1.5rem;
   }
 }
 
-/* ===== TRADER STORIES - MORE LINK & VIDEO FIX ===== */
 .ts-more-link {
   text-align: center;
   margin-top: 32px;
@@ -3402,7 +3293,6 @@ button {
   border-color: var(--neon-blue);
 }
 
-/* Ensure video wrap image fills correctly */
 .ts-video-wrap img {
   position: absolute;
   inset: 0;
@@ -3420,6 +3310,7 @@ button {
     margin-top: 20px;
     padding: 0 16px;
   }
+
   .ts-more-anchor {
     font-size: 0.9rem;
   }

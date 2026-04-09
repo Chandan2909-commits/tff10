@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,12 +13,12 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=2" />
   <style>
-    /* ── Same background system as trading_rules.html: liquid-bg canvas via app.js ── */
+    
     body {
       background: #000;
     }
 
-    /* ── HERO ── */
+    
     .faq-hero {
       padding: 160px 0 60px;
       position: relative;
@@ -62,7 +62,7 @@
       animation: pulse 1.5s ease-in-out infinite;
     }
 
-    /* ── LAYOUT ── */
+    
     .faq-container {
       display: flex;
       gap: 32px;
@@ -72,7 +72,7 @@
       background: transparent;
     }
 
-    /* ── SIDEBAR TABS — liquid glass ── */
+    
     .faq-sidebar {
       width: 280px;
       display: flex;
@@ -113,7 +113,7 @@
       box-shadow: 0 0 24px rgba(0, 212, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
-    /* ── MAIN CONTENT PANEL — liquid glass ── */
+    
     .faq-content-area {
       flex: 1;
       background: rgba(255, 255, 255, 0.03);
@@ -157,7 +157,7 @@
       border-bottom: 1px solid rgba(0, 212, 255, 0.12);
     }
 
-    /* ── ACCORDION ITEMS — liquid glass cards ── */
+    
     .accordion-item {
       margin-bottom: 12px;
       border: 1px solid rgba(0, 212, 255, 0.12);
@@ -246,7 +246,7 @@
       margin-bottom: 6px;
     }
 
-    /* ── RESPONSIVE ── */
+    
     @media (max-width: 992px) {
       .faq-container {
         flex-direction: column;
@@ -275,7 +275,7 @@
       }
     }
 
-    /* ── SEARCH — liquid glass ── */
+    
     .search-wrapper {
       position: relative;
       margin: 0 auto 40px auto;
@@ -371,7 +371,7 @@
       color: #fff;
     }
 
-    /* ── RULE BLOCKS ── */
+    
     .rule-block {
       margin-bottom: 20px;
     }
@@ -409,10 +409,10 @@
 
 <body>
 
-  <!-- ===== GLOBAL LIQUID GRADIENT BG ===== -->
+  
   <canvas id="liquid-bg"></canvas>
 
-  <!-- ===== NAVBAR ===== -->
+  
   <nav id="navbar">
     <div class="nav-inner">
       <div class="nav-logo" id="nav-logo" onclick="window.location.href='index.html';">
@@ -436,14 +436,14 @@
     </div>
   </nav>
 
-  <!-- ===== FLOATING GRADIENT ORBS ===== -->
+  
   <div class="gradient-orb orb-1"></div>
   <div class="gradient-orb orb-2"></div>
   <div class="gradient-orb orb-3"></div>
   <div class="gradient-orb orb-4"></div>
   <div class="gradient-orb orb-5"></div>
 
-  <!-- ===== HERO ===== -->
+  
   <section class="faq-hero container">
     <div class="faq-page-tag"><span class="faq-page-tag-dot"></span>Rules & Guidelines</div>
     <h1 class="faq-hero-title">Rules &amp; <span class="gradient-text">Guidelines</span></h1>
@@ -461,9 +461,9 @@
     </div>
   </section>
 
-  <!-- ===== FAQ LAYOUT ===== -->
+  
   <section class="faq-container container">
-    <!-- Sidebar Tabs -->
+    
     <div class="faq-sidebar" id="faq-sidebar">
       <button class="faq-tab" data-target="about">About The Fusion Funded</button>
       <button class="faq-tab" data-target="rules">Trading Rules and Guidelines</button>
@@ -474,10 +474,10 @@
       <button class="faq-tab" data-target="refund">Refund Policies</button>
     </div>
 
-    <!-- Content Area -->
+    
     <div class="faq-content-area" id="faq-content-area">
 
-      <!-- Category: About -->
+      
       <div class="faq-category-content" id="about">
         <h2 class="category-title">About The Fusion Funded</h2>
 
@@ -656,7 +656,7 @@
     </div>
     </div>
 
-    <!-- Category: Rules -->
+    
     <div class="faq-category-content" id="rules">
       <h2 class="category-title">Trading Rules and Guidelines</h2>
 
@@ -1019,7 +1019,7 @@
 
     </div>
 
-    <!-- Category: KYC -->
+    
     <div class="faq-category-content" id="kyc">
       <h2 class="category-title">KYC (Know Your Customer)</h2>
 
@@ -1190,7 +1190,7 @@
       </div>
     </div>
 
-    <!-- Category: Withdrawals -->
+    
     <div class="faq-category-content" id="withdrawals">
       <h2 class="category-title">Withdrawals</h2>
 
@@ -1341,7 +1341,7 @@
       </div>
     </div>
 
-    <!-- Category: Weekend Trading -->
+    
     <div class="faq-category-content" id="weekend">
       <h2 class="category-title">Weekend Trading</h2>
 
@@ -1382,7 +1382,7 @@
       </div>
     </div>
 
-    <!-- Category: Security -->
+    
     <div class="faq-category-content" id="security">
       <h2 class="category-title">Account Security & Access Rules</h2>
 
@@ -1459,7 +1459,7 @@
       </div>
     </div>
 
-    <!-- Category: Refund -->
+    
     <div class="faq-category-content" id="refund">
       <h2 class="category-title">Refund Policies</h2>
 
@@ -1544,7 +1544,7 @@
     </div>
   </section>
 
-  <!-- ===== LONG FOOTER ===== -->
+  
   <footer class="footer long-footer">
     <div class="footer-glow"></div>
     <div class="footer-gradient-shape"></div>
@@ -1596,7 +1596,7 @@
         </div>
       </div>
 
-      <!-- Risk Disclaimer -->
+      
       <div class="footer-disclaimer">
         <h5>Risk Disclosure</h5>
         <p>Trading in financial instruments carries a high level of risk to your capital, with the possibility of losing
@@ -1610,14 +1610,10 @@
           performance is not indicative of future real-world results.</p>
       </div>
 
-      <!-- Bottom Bar -->
+      
       <div class="footer-bottom">
         <p>&copy; 2024 The Fusion Funded. All Rights Reserved.</p>
-        <!-- <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Risk Disclosure</a>
-        </div> -->
+        
       </div>
     </div>
   </footer>
@@ -1627,7 +1623,6 @@
       const tabs = document.querySelectorAll('.faq-tab');
       const contents = document.querySelectorAll('.faq-category-content');
 
-      // Function to switch tabs
       function switchTab(targetId) {
         tabs.forEach(t => t.classList.remove('active'));
         contents.forEach(c => c.classList.remove('active'));
@@ -1639,13 +1634,12 @@
           activeTab.classList.add('active');
           activeContent.classList.add('active');
         } else if (tabs.length > 0) {
-          // Default to first
+
           tabs[0].classList.add('active');
           contents[0].classList.add('active');
         }
       }
 
-      // Check URL parameters
       const urlParams = new URLSearchParams(window.location.search);
       const category = urlParams.get('category');
       const questionQuery = urlParams.get('q');
@@ -1675,18 +1669,16 @@
         }, 300);
       }
 
-      // Sidebar click events
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const target = tab.getAttribute('data-target');
           switchTab(target);
-          // Update URL without reloading
+
           const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?category=' + target;
           window.history.pushState({ path: newUrl }, '', newUrl);
         });
       });
 
-      // Accordion functionality
       const accordionHeaders = document.querySelectorAll('.accordion-header');
       accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
@@ -1697,14 +1689,8 @@
             item.classList.remove('active');
             content.style.maxHeight = null;
           } else {
-            // Optional: close other items
-            /*
-            const activeItems = document.querySelectorAll('.accordion-item.active');
-            activeItems.forEach(activeItem => {
-              activeItem.classList.remove('active');
-              activeItem.querySelector('.accordion-content').style.maxHeight = null;
-            });
-            */
+
+            
             item.classList.add('active');
             content.style.maxHeight = content.scrollHeight + "px";
           }
@@ -1784,7 +1770,6 @@
               contentHtml = contentHtml.substring(0, 100) + '...';
             }
 
-            // Highlight match
             const regex = new RegExp(`(${val})`, 'gi');
             titleHtml = titleHtml.replace(regex, `<span style="color: #00d4ff;">$1</span>`);
             contentHtml = contentHtml.replace(regex, `<span style="color: #00d4ff;">$1</span>`);
@@ -1817,10 +1802,10 @@
     }
   </script>
   <script src="app.js"></script>
-    <!-- Chat Widget -->
+    
     <div class="chat-container">
         <div class="chat-messages">
-            <!-- Home Tab Content -->
+            
             <div class="tab-content" id="home-tab">
                 <div class="home-hero">
                     <img src="logo.png" alt="Logo" class="chat-logo">
@@ -1880,13 +1865,13 @@
                 </div>
             </div>
 
-            <!-- Messages Tab Content -->
+            
             <div class="tab-content" id="messages-tab" style="display: none;">
             </div>
 
-            <!-- Help Tab Content -->
+            
             <div class="tab-content" id="help-tab" style="display: none;">
-                <!-- Search Bar -->
+                
                 <div class="help-search-container">
                     <div class="help-search-wrapper">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -1900,7 +1885,7 @@
                     </div>
                 </div>
 
-                <!-- Search Results -->
+                
                 <div class="help-search-results" id="help-search-results" style="display: none;"></div>
 
                 <div class="help-content" id="help-main">
@@ -1958,10 +1943,10 @@
                     </div>
                 </div>
 
-                <!-- Category View -->
+                
                 <div class="help-category" id="help-category" style="display: none;"></div>
 
-                <!-- Article View -->
+                
                 <div class="help-article" id="help-article" style="display: none;"></div>
             </div>
         </div>
@@ -1999,7 +1984,7 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
+        
         <div class="chat-bottom-nav">
             <button class="nav-item active" data-tab="home">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2031,7 +2016,7 @@
         </div>
     </div>
 
-    <!-- Launcher Button -->
+    
     <button id="chat-launcher" class="chat-launcher" aria-label="Open Chat">
         <div class="launcher-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

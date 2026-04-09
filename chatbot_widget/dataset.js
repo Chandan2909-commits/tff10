@@ -1,371 +1,124 @@
-// =============================================================================
-// THE FUSION FUNDED — CHATBOT KNOWLEDGE BASE (dataset.js)
-// =============================================================================
-// Source 1 (Base):    questions_instruction.md
-// Source 2 (Updates): new_instructions.md  [overrides marked with ← UPDATED]
-// 
-// Build Log:
-//   Iteration 1 — GENERAL_QA + About The Fusion Funded + Weekend Trading
-//   Iteration 2 — HFT 2.0 Challenge + Trading Rules 1–6
-//   Iteration 3 — Trading Rules 7–15
-//   Iteration 4 — Trading Rules 16–22 + KYC
-//   Iteration 5 — Withdrawals + Account Security + Refund Policy
-// =============================================================================
+// RAW KNOWLEDGE BASE DATA
+export const RAW_QUESTIONS_INSTRUCTIONS = "THE FUSION FUNDED FIRM Complete Trading Rules Set (Article\nwise) \nBy- Saksham Singh \nAll Collections > About The Fusion Funded \n1. What is The Fusion Funded? \nThe Fusion Funded is a proprietary trading firm that provides traders with access to funded capital \nthrough a structured evaluation process. \nOur model is specifically designed for traders who use high-frequency trading systems (HFT), \nautomation, and advanced execution strategies to achieve performance efficiently. \nUnlike traditional prop firms, The Fusion Funded allows traders to use HFT-based strategies during \nthe challenge phase, enabling faster completion of evaluation objectives. \nWe operate on a single evaluation model: \n\u2022 HFT 2.0 Challenge \nThis challenge is designed to assess a trader\u2019s ability to generate profits while maintaining strict risk \nmanagement. \nTraders may also choose to work with our trusted partners, who specialize in high-frequency \ntrading systems and can assist in completing the challenge using advanced trading solutions. \nAll accounts that successfully meet the evaluation criteria are reviewed and transitioned into a \nfunded trading environment where structured risk rules are applied. \n2. What makes The Fusion Funded different? \nThe Fusion Funded operates on a performance-driven and execution-flexible model, built \nspecifically for modern traders. \nKey differences include: \n\u2022 HFT-enabled challenge phase \nTraders can use high-frequency trading systems, automation, and fast execution strategies \nto complete the challenge. \n\u2022 Single streamlined evaluation (HFT 2.0) \nNo complex multi-phase challenges \u2014 one clear path to funding. \n\u2022 Improved risk structure \no 10% maximum drawdown \no 7% daily drawdown \n\u2022 Flexible payout structure \nTraders can earn up to: \no 60% \u2192 70% \u2192 80% \u2192 90% profit split \n\u2022 Faster progression system \nDesigned to allow traders to complete evaluations efficiently using their preferred strategies. \nOnce funded, traders operate under a structured and controlled trading environment to ensure \nlong-term sustainability and capital protection. \n3. How do I get started with The Fusion Funded? \nGetting started with The Fusion Funded is simple: \nStep 1 \u2014 Choose Your Account \nSelect your preferred account size and purchase the HFT 2.0 Challenge. \nStep 2 \u2014 Start Trading \nBegin trading on your challenge account. \nYou may trade manually or use HFT systems and automated strategies to achieve the profit target. \nTraders may also choose to work with our trusted partners, who can assist in completing the \nchallenge using high-frequency trading systems. \nStep 3 \u2014 Achieve the Profit Target \nReach the required profit target while following all trading rules. \nStep 4 \u2014 Account Review \nOnce the target is achieved, your account is reviewed to ensure compliance with all rules. \nStep 5 \u2014 Get Funded \nAfter successful review, you will receive your funded account and can begin trading under the \nfunded model. \n4. Who can join The Fusion Funded? \nThe Fusion Funded is open to traders worldwide who want to demonstrate their trading skills and \naccess funded capital. \nEligibility requirements: \n\u2022 Must be at least 18 years old \n\u2022 Must have a valid trading strategy \n\u2022 Must follow all trading rules and risk guidelines \nBoth beginner and experienced traders are welcome. \nThe Fusion Funded is designed for traders who: \n\u2022 Use manual or automated strategies \n\u2022 Want to leverage HFT systems during evaluation \n\u2022 Aim to trade funded capital with structured risk \nTo comply with international regulations, services may not be available in restricted jurisdictions or to \nindividuals listed under global sanctions or financial compliance restrictions. \nRestricted Jurisdictions & Compliance \nTo comply with international regulations, The Fusion Funded does not provide services to \nindividuals who are located in or are residents of the following countries or regions: \n\u2022 Democratic People\u2019s Republic of Korea (North Korea) \n\u2022 Iran \n\u2022 South Sudan \n\u2022 Sudan \n\u2022 Yemen \nAdditionally, we do not provide services to individuals or entities listed on international sanctions \nlists or global anti-terrorism compliance lists. \nAdditional Restrictions \nThe Fusion Funded does not offer services to: \n\u2022 Individuals listed on international sanctions lists \n\u2022 Persons with criminal histories involving financial crimes or terrorism \n\u2022 Individuals previously banned due to contract violations or policy breaches \n__________________________________________________________________________________________________________ \nAll Collections > Weekend Trading \n1. Is Weekend Holding Allowed? \nYes \u2014 Weekend Holding is allowed with prior approval. \nTraders are permitted to hold positions over the weekend on both challenge and funded accounts, \nprovided approval is obtained before the market closes on Friday. \nHow to request approval: \n\u2022 Traders must inform support before the Friday market close \n\u2022 The request should clearly mention that positions will be held over the weekend \nFailure to notify support before market close may result in a violation. \nImportant Notes: \n\u2022 Markets may open with price gaps after the weekend \n\u2022 Increased volatility and slippage may occur at market open \n\u2022 All standard risk rules, including drawdown limits, still apply \nTraders are responsible for managing risk while holding positions over the weekend. \nAll Collections > Trading Rules and Guidelines \n1. The Fusion Funded \u2014 HFT 2.0 Challenge Model \nThe Fusion Funded operates on a single evaluation system known as the HFT 2.0 Challenge. \nThis model is designed for traders who want to use high-frequency trading systems (HFT), \nautomation, and advanced execution strategies to complete their evaluation efficiently. \nDuring the challenge phase: \n\u2022 HFT strategies are allowed \n\u2022 Tick scalping is allowed \n\u2022 Arbitrage and latency-based strategies are allowed \nTraders may also choose to work with our trusted partners, who specialize in high-frequency \ntrading systems and can assist in completing the challenge efficiently. \nOnce funded, all accounts operate under a structured and rule-based environment, where specific \ntrading restrictions apply. \n2. Challenge Objectives \nTo successfully complete the HFT 2.0 Challenge, traders must: \n\u2022 Achieve the required profit target \n\u2022 Follow all trading rules \n\u2022 Maintain proper risk management \nAll accounts are reviewed after completion of the challenge. \n3. Evaluation Process \n\u2022 Once the profit target is achieved, the account is placed under review \n\u2022 Trading behavior and rule compliance are verified \n\u2022 Upon approval, the trader is moved to the funded stage \n4. Profit Target \nThe profit target for the HFT 2.0 Challenge is: \n\u2022 10% of the initial account size \nExample: \nFor a $100,000 account: \n\u2022 Profit Target = $10,000 \nThis target can be achieved using manual trading or HFT strategies during the challenge phase. \n5. Drawdown Rules \nMaximum Overall Drawdown \n\u2022 Maximum loss allowed: 10% of initial account size \nDaily Drawdown \n\u2022 Daily loss limit: 7% \nExample: \nAccount Size: $100,000 \n\u2022 Maximum Drawdown: $10,000 \n\u2022 Daily Drawdown: $7,000 \nThe account balance or equity must never fall below the defined limits. \n6. 20% Risk Per Trade Rule \nA trader can risk a maximum of 20% of the total drawdown allowance in a single trade. \nExample: \nAccount Size: $100,000 \nTotal Drawdown Allowed: $10,000 \nMaximum Risk Per Trade: $2,000 \nExceeding this limit at any point during trade execution or exposure calculation will be treated as a \nviolation, regardless of trade outcome. \n7. Consistency Rule \nA trader\u2019s single trading day or trade must not exceed 30% of total profits. \nExample: \nTotal Profit: $10,000 \nMaximum allowed from a single day/trade: $3,000 \nExceeding this limit will result in a violation. \n8. Minimum Trading Days \n\u2022 Minimum required trading days: 14 days \n\u2022 Optional add-on reduces this to 9 trading days \n9. Minimum Trading Day Rule (Lot-Based) \nA trading day will only be counted if the trader places a trade with at least: \n0.1x (1/10th) of the largest lot size used during the payout cycle \nExample: \nIf the largest lot used = 1.0 lot \nMinimum lot required to count a day = 0.1 lot \nTrades below this threshold will not be counted as valid trading days. \n10. Layering Rule \nOpening more than 3 positions in the same direction on the same instrument simultaneously is \nnot allowed. \nAdding positions to trades that are already in drawdown, grid trading, or recovery-based entries may \nbe considered a violation. \n\u2022 Challenge Phase: May be treated as a soft breach \n\u2022 Funded Stage: May be treated as a hard breach \n11. Martingale Rule \nMartingale trading is strictly prohibited. \nMartingale includes increasing position size after a loss in an attempt to recover previous losses. \nImportant: \nThe sum of all open positions will be treated as a single combined position. \nIf a trader increases total exposure after a losing trade, it will be considered a martingale strategy. \nExamples: \n\u2022 Increasing lot size after a loss \n\u2022 Re-entering trades with higher risk to recover drawdown \n\u2022 Adding positions that increase total exposure after a loss \n\u2022 Challenge Phase: May be treated as a soft breach \n\u2022 Funded Stage: May be treated as a hard breach \n12. Minimum Trade Holding Time (Live Accounts Only) \nOn funded accounts: \n\u2022 Each trade must be held for a minimum of 2 minutes \nUp to 3\u20134 trades per payout cycle may be ignored. \nIf this limit is exceeded: \n\u2022 It will be treated as a soft breach \n\u2022 The payout will be rejected \n\u2022 The account will be reset to the initial balance \n13. Trading Behavior Rules \nThe following behaviors are considered violations: \nToxic Trading Behavior \n\u2022 Ignoring risk management \n\u2022 Reckless or undisciplined trading \n\u2022 Trading without a clear strategy \nOvertrading \n\u2022 Excessive number of trades in a short time \n\u2022 Continuous entries without proper setup \nGambling Behavior \n\u2022 Random entries without analysis \n\u2022 Revenge trading \n\u2022 Emotion-driven execution \nRepeated violations may result in restrictions or account termination. \n14. Tick Scalping \nTick scalping refers to extremely fast trades capturing very small price movements. \nExample: \n\u2022 Opening and closing trades within very short durations repeatedly \nDuring the challenge phase, tick scalping is allowed. \nOn funded accounts: \n\u2022 Tick scalping is restricted \n\u2022 Excessive use may be treated as a violation \n15. Arbitrage Trading (Restricted) \nArbitrage trading refers to exploiting price differences rather than trading market direction. \nExample: \n\u2022 Opening offsetting positions across correlated instruments to neutralize exposure \nDuring the challenge phase, arbitrage strategies are allowed. \nOn funded accounts: \n\u2022 Arbitrage trading is restricted \n\u2022 Such activity may be treated as a violation \n16. Hedging \nImproper hedging practices are not allowed. \nExamples: \n\u2022 Opening opposite trades on the same instrument \n\u2022 Locking positions to remove exposure \nSuch behavior may be flagged and treated as a violation. \n17. Reverse Trading \nReverse trading includes: \n\u2022 Intentionally placing losing trades \n\u2022 Offsetting positions across accounts \n\u2022 Manipulating exposure to bypass rules \nTrades placed to neutralize exposure within short time intervals may be flagged. \n18. One-Sided Bias Trading \nRepeated trading in only one direction without logical justification may trigger a review. \nThis behavior may indicate poor risk management or strategy imbalance. \n19. News Trading \nNews trading is fully allowed. \nTraders may open, close, and manage positions during: \n\u2022 High-impact news releases \n\u2022 Economic announcements \n\u2022 Volatile market conditions \nTraders are responsible for managing risk during periods of high volatility. \nAll standard risk rules still apply. \n20. Weekend Holding (Rule Reference) \nWeekend holding is allowed with prior approval. \nRefer to the Weekend Trading section for full details. \n21. Excessive Risk-Taking / Over-Leveraging \nThe use of disproportionately large position sizes or repeated maximum exposure trades that can \nsignificantly impact the account balance may be considered excessive risk-taking. \nExamples: \n\u2022 Repeated use of maximum lot size \n\u2022 Taking trades that can damage the account rapidly \n\u2022 Over-reliance on leverage \nSuch behavior may result in restrictions or account termination. \n22. Breach System \nSoft Breach \n\u2022 Payout is rejected \n\u2022 Account is reset to initial balance \n\u2022 Account remains active in the same phase \nHard Breach \n\u2022 Account is permanently terminated \n_____________________________________________________________________________________________________ \nAll Collections > KYC (Know Your Customer) \n1. Why is KYC required for my account? \nCompleting the Know Your Customer (KYC) process is mandatory to maintain a secure and compliant \ntrading environment at The Fusion Funded. \nWhy KYC is required: \n1. Legal & Regulatory Compliance \nKYC helps prevent: \n\u2022 Fraud \n\u2022 Money laundering \n\u2022 Identity misuse \n\u2022 Financial crime \nIt ensures all accounts belong to real and verified individuals. \n2. Account Security & Protection \nKYC links your trading account to verified identity details, helping prevent: \n\u2022 Unauthorized access \n\u2022 Identity theft \n\u2022 Account misuse \n3. Fair Trading Environment \nKYC ensures: \n\u2022 One individual does not operate multiple accounts \n\u2022 Duplicate or fraudulent accounts are prevented \n\u2022 All traders are evaluated fairly \n4. Payout Eligibility \nKYC verification must be completed before any payout request. \nWithout KYC approval: \n\u2022 Withdrawals cannot be processed \n\u2022 Account features may remain restricted \n2. What documents are required for KYC verification? \nTo complete KYC verification, traders must submit valid documents confirming identity. \nPersonal Identification (Required) \nSubmit one valid government-issued photo ID: \n\u2022 Passport (preferred) \n\u2022 Driver\u2019s License \n\u2022 National ID Card \nRequirements: \n\u2022 Document must be valid and not expired \n\u2022 All details must be clear and readable \n\u2022 Name must match the account details exactly \n3. How long does KYC verification take? \nKYC verification is usually completed quickly, depending on document quality. \nTypical Timeframes: \n\u2022 Instant Approval (in some cases) \n\u2022 Standard Processing: 1\u20132 business days \nDelays may occur if: \n\u2022 Documents are unclear or incomplete \n\u2022 Information does not match account details \n\u2022 Additional verification is required \nHow you will be notified: \n\u2022 Email confirmation \n\u2022 Account status update \n4. What happens if my KYC is rejected? \nIf your KYC is rejected, it can usually be resolved by correcting the submitted information. \nCommon reasons for rejection: \n\u2022 Blurry or cropped documents \n\u2022 Expired documents \n\u2022 Mismatched account details \n\u2022 Incomplete submission \nWhat happens next: \n\u2022 You will receive a rejection email with the reason \n\u2022 You can resubmit corrected documents \nRe-verification time: \n\u2022 Typically completed within 1\u20132 business days \nImportant: \nIf required documents are not provided: \n\u2022 Account access may remain restricted \n\u2022 Payouts cannot be processed \nAll Collections > Withdrawals \n1. What is the minimum amount required for a \nwithdrawal? \nTo ensure efficient processing, The Fusion Funded applies a minimum withdrawal requirement. \n\u2022 Minimum Withdrawal: 1% of the initial account size \nWithdrawal requests below this amount cannot be processed. \n2. What are the withdrawal methods? \nAvailable payout methods may include: \n\u2022 Cryptocurrency (USDT and other supported assets) \n\u2022 UPI transfers \n\u2022 Bank transfers \n\u2022 E-wallets (where available) \nPayment options may vary depending on location and availability. \n3. What are the requirements before withdrawing? \nBefore submitting a withdrawal request, the following conditions must be met: \n\u2022 Minimum profit of 1% of account size is achieved \n\u2022 Minimum trading days requirement is completed (14 days or 9 days with add-on) \n\u2022 KYC verification is completed and approved \n\u2022 All trading rules are followed \n\u2022 No active violations are present \n\u2022 Account is in profit and above initial balance \nImportant Rule: \nOnce a withdrawal request is submitted: \n\u2022 No further trading activity is allowed \nPlacing trades after requesting a payout may result in a violation and will be treated as a violation \nand may lead to account termination. \n4. Payout Cycle and Profit Split \nThe Fusion Funded operates on a structured payout system. \nPayout Cycle: \n\u2022 Payout cycle: 18 days \nTraders become eligible to request payouts after completing the payout cycle and meeting all \nrequirements. \nProfit Split Structure: \nTraders can earn: \n\u2022 60% \u2192 70% \u2192 80% \u2192 90% profit split \nThe Fusion Funded is among the few firms offering 60% profit split from the first payout, with \nscaling opportunities for higher payouts. \n5. How long does it take to receive a withdrawal? \nOnce a withdrawal request is submitted: \n\u2022 The request is reviewed and processed after eligibility conditions are met \n\u2022 Approval is subject to compliance and risk checks \nAfter approval: \n\u2022 Funds are processed and delivered as soon as possible, depending on the selected payout \nmethod \nProcessing times may vary based on: \n\u2022 Payment method \n\u2022 Network conditions \n\u2022 Banking or provider timelines \nImportant Notes: \n\u2022 Delays may occur due to weekends, holidays, or additional verification checks \n\u2022 The Fusion Funded ensures all payouts are processed securely and efficiently \n___________________________________________________________________________________________________________ \nAll Collections > Account Security & Access Rules \n1. What is the IP Address Policy? \nThere are no strict IP location restrictions for traders. \nTraders may access their accounts from different locations, devices, or networks without violating any \nrules. \nAccount Access & Security \nWhile location flexibility is allowed, the following are strictly prohibited: \n\u2022 Account sharing \n\u2022 Unauthorized third-party access \n\u2022 Selling or transferring account access \n\u2022 Use of compromised or stolen identities \nIf suspicious activity is detected, The Fusion Funded may request additional verification to protect \nthe account. \nImportant Notes: \n\u2022 Traders can travel and trade freely \n\u2022 Logging in from multiple locations is allowed \n\u2022 Use of different devices is allowed \n\u2022 Standard security monitoring still applies \n2. What is the Inactivity Policy? \nTo ensure active participation, The Fusion Funded enforces an inactivity rule across all accounts. \nInactivity Rule: \nIf a trading account remains inactive for 14 consecutive days, it will be considered a violation and \nmay result in account termination. \nWhat counts as inactivity: \n\u2022 No trades placed \n\u2022 No trading activity \n\u2022 Account remains idle \nHow to avoid inactivity: \n\u2022 Place at least one trade within every 14-day period \n\u2022 Maintain regular account activity \nFailure to meet this requirement may result in account termination. \n________________________________________________________________________________________________________ \nAll Collections > Refund Policy \n1. What is the refund policy? \nEvaluation fees are not refunded immediately after purchase. \nHowever, The Fusion Funded offers a performance-based refund system for eligible traders. \nRefund Eligibility \nThe challenge fee can be refunded once the trader: \n\u2022 Successfully reaches the funded stage \n\u2022 Completes four successful payouts \n\u2022 Maintains compliance with all trading rules \n\u2022 Keeps the account in good standing \nAdd-On Requirement \nRefund eligibility is only available for traders who have selected the refund add-on at the time of \npurchase. \nIf the add-on is not selected: \n\u2022 The evaluation fee will remain non-refundable \nWhen is the refund issued? \nThe refund is processed along with the fourth payout from the funded account. \nWhen refunds are NOT applicable: \nRefunds will not be issued in the following cases: \n\u2022 Failed challenges \n\u2022 Rule violations \n\u2022 Account termination \n\u2022 Inactivity breaches \n\u2022 Payment disputes or chargebacks \n\u2022 Trading losses \nWhy evaluation fees exist: \nEvaluation fees cover: \n\u2022 Platform access \n\u2022 Infrastructure and technology \n\u2022 Risk management systems \n\u2022 Operational costs \nThese costs are incurred once the account is activated. \nAgreement to refund policy \nBy purchasing any evaluation program, you acknowledge that: \n\u2022 Refunds are performance-based \n\u2022 Refund eligibility depends on completing payout milestones \n\u2022 All trading rules must be followed";
+export const RAW_NEW_INSTRUCTIONS = "The Fusion Funded operates on a single evaluation system known as the HFT 2.0 Challenge.\n\n\nThis model is designed for traders who want to use high-frequency trading systems (HFT), automation, and advanced execution strategies to complete their evaluation efficiently\n\n\nDuring the challenge phase\n\n\nHFT strategies are allowed\nTick scalping is allowed\nArbitrage and latency-based strategies are allowed\nTraders may also choose to work with our trusted partners, who specialize in high-frequency trading systems and can assist in completing the challenge efficiently\n\nOnce funded, all accounts operate under a structured and rule-based environment, where specific trading restrictions apply\n\n\nChallenge Objectives\n\n\nTo successfully complete the HFT 2.0 Challenge, traders must:\n\n\nAchieve the required profit target\nFollow all trading rules\nMaintain proper risk management\n\nAll accounts are reviewed after completion of the challenge.\n\n\nEvaluation Process\n\n\nOnce the profit target is achieved, the account is placed under review\nTrading behavior and rule compliance are verified\nUpon approval, the trader is moved to the funded stage\n\nProfit Target\n\n\nThe profit target for the HFT 2.0 Challenge is\n\n\n10% of the initial account size\n\nExample:\n\n\nFor a $100,000 account:\n\n\nProfit Target = $10,000\n\nThis target can be achieved using manual trading or HFT strategies during the challenge phase.\n\n\nDrawdown Rules\n\n\nMaximum Overall Drawdown\n\n\nMaximum loss allowed: 10% of initial account size\n\nDaily Drawdown\n\n\nDaily loss limit: 7%\n\nExample:\n\n\nAccount Size: $100,000\n\n\nMaximum Drawdown: $10,000\nDaily Drawdown: $7,000\n\nThe account balance or equity must never fall below the defined limits.\n\n\n20% Risk Per Trade Rule\n\n\nA trader can risk a maximum of 20% of the total drawdown allowance in a single trade, and to follow this rule, a mandatory SL on positions is required in order to track and keep the maximum allowed risk under 20%.\n\n\nExample:\n\n\nAccount Size: $100,000\n\n\nTotal Drawdown Allowed: $10,000\nMaximum Risk Per Trade: $2,000\n\nExceeding this limit at any point during trade execution or exposure calculation will be treated as a violation, regardless of trade outcome. This may be a warning for the first time but is a hard breach afterwards.\n\n\nConsistency Rule\n\n\nA trader\u2019s single trading day or trade must not exceed 30% of total profits.\n\n\nExample:\n\n\nTotal Profit: $10,000\nMaximum allowed from a single day/trade: $3,000\n\nExceeding this limit will result in a violation.\n\n\nMinimum Trading Days\n\n\nMinimum required trading days: 12 days\nOptional add-on reduces this to 7 trading days\n\nMinimum Trading Day Rule (Profit-Based)\n\n\nA trading day will only be counted if the trader places a trade and achieves at least:\n\n\n0.1x (1/10th) of the highest profit on a single trade/day used during the payout cycle\n\nExample:\n\n\nIf the highest profit is 1000$\nMinimum profit required to count a day - 100$\n\nTrades below this threshold will not be counted as valid trading days\n\n\nLayering Rule\n\n\nOpening more than 3 positions in the same direction on the same instrument simultaneously is not allowed.\n\n\nAdding positions to trades that are already in drawdown, grid trading, or recovery-based entries may be considered a violation.\n\n\nChallenge Phase: May be treated as a soft breach\nFunded Stage: May be treated as a hard breach\n\nMartingale Rule\n\n\nMartingale trading is strictly prohibited\n\n\nMartingale includes increasing position size after a loss in an attempt to recover previous losses.\n\n\nImportant:\n\n\nThe sum of all open positions will be treated as a single combined position.\nIf a trader increases total exposure to more than 1.6X after a losing trade, it will be considered a martingale strategy.\n\nExamples:\n\n\nIncreasing lot size more than 1.6X after a loss\nRe-entering trades with higher risk to recover drawdown\nAdding positions that increase total exposure after a loss\n\nChallenge Phase: May be treated as a soft breach\nFunded Stage: May be treated as a hard breach\n\nMinimum Trade Holding Time (Live Accounts Only)\n\n\nOn funded accounts:\n\n\nEach trade must be held for a minimum of 2 minutes\nUp to 1-2 trades per payout cycle may be ignored.\n\nIf this limit is exceeded:\n\n\nIt will be treated as a soft breach\nThe payout will be rejected\nThe account will be reset to the initial balance\n\nTrading Behavior Rules\n\n\nThe following behaviors are considered violations:\n\n\nToxic Trading Behavior\n\n\nIgnoring risk management\nReckless or undisciplined trading\nTrading without a clear strategy\n\nOvertrading\n\n\nExcessive number of trades in a short time\nContinuous entries without proper setup\n\nGambling Behavior\n\n\nRandom entries without analysis\nRevenge trading\nEmotion-driven execution\n\nRepeated violations may result in restrictions or account termination.\n\n\nTick Scalping\n\n\nTick scalping refers to extremely fast trades capturing very small price movements.\n\n\nExample:\n\n\nOpening and closing trades within very short durations repeatedly\n\nDuring the challenge phase, tick scalping is allowed.\n\n\nOn funded accounts\n\n\nTick scalping is restricted\nExcessive use may be treated as a violation\n\nArbitrage Trading (Restricted)\n\n\nArbitrage trading refers to exploiting price differences rather than trading market direction.\n\n\nExample:\n\n\nOpening offsetting positions across correlated instruments to neutralize exposure\n\nDuring the challenge phase, arbitrage strategies are allowed.\n\n\nOn funded accounts\n\n\nArbitrage trading is restricted\nSuch activity may be treated as a violation\n\nHedging\n\n\nImproper hedging practices are not allowed.\n\n\nExample:\n\n\nOpening opposite trades on the same instrument\nLocking positions to remove exposure\n\nSuch behavior may be flagged and treated as a violation\n\n\nReverse Trading\n\n\nReverse trading includes:\n\n\nIntentionally placing losing trades\nOffsetting positions across accounts\nManipulating exposure to bypass rules\n\nTrades placed to neutralize exposure within short time intervals may be flagged.\n\n\nOne-Sided Bias Trading\n\n\nRepeated trading in only one direction without logical justification may trigger a review.\n\n\nThis behavior may indicate poor risk management or strategy imbalance.\n\n\nNews Trading\n\n\nNews trading is fully allowed.\n\n\nTraders may open, close, and manage positions during:\n\n\nHigh-impact news releases\nEconomic announcements\nVolatile market conditions\n\nTraders are responsible for managing risk during periods of high volatility.\n\n\nAll standard risk rules still apply.\n\n\nWeekend Holding (Rule Reference)\n\n\nWeekend holding is allowed with prior approval.\n\n\nRefer to the Weekend Trading section for full details.\n\n\nExcessive Risk-Taking / Over-Leveraging\n\n\nThe use of disproportionately large position sizes or repeated maximum exposure trades that can significantly impact the account balance may be considered excessive risk-taking.\n\n\nExamples:\n\n\nRepeated use of maximum lot size\nTaking trades that can damage the account rapidly\nOver-reliance on leverage\n\nSuch behavior may result in restrictions or account termination.\n\n\nBreach System\n\n\nSoft Breach\n\n\nPayout is rejected\nAccount is reset to initial balance\nAccount remains active in the same phase\n\nHard Breach\n\n\nAccount is permanently terminated\n\n\nBefore submitting a withdrawal request, the following conditions must be met:\n\n\nMinimum profit of 1% of account size is achieved\nMinimum trading days requirement is completed (12 days or 7 days with add-on)\nKYC verification is completed and approved\nAll trading rules are followed\nNo active violations are present\nAccount is in profit and above initial balance\n\nImportant Rule:\n\n\nOnce a withdrawal request is submitted:\n\n\nNo further trading activity is allowed\n\nPlacing trades after requesting a payout may result in a violation and will be treated as a violation and may lead to account termination.\n\n\n\nPAYOUT CYCLE AND PROFIT SPLIT\nThe Fusion Funded operates on a structured payout system.\n\n\nPayout Cycle:\n\n\nPayout cycle: 18 days\n\nTraders become eligible to request payouts after completing the payout cycle and meeting all requirements.\n\n\nProfit Split Structure:\n\n\nTraders can earn:\n\n\n60% \u2192 70% \u2192 80% \u2192 90% profit split\n\nThe Fusion Funded is among the few firms offering 60% profit split from the first payout, with scaling opportunities for higher payouts.\n\nIS WEEKEND HOLDING ALLOWED?\nYes \u2014 Weekend Holding is allowed with prior approval\n\n\nTraders are permitted to hold positions over the weekend on both challenge and funded accounts, provided approval is obtained before the market closes on Friday. Approvals requests can be made through any support method (Whatsapp, Instagram, Email or Contact Us panel).\n\n\nHow to request approval:\n\n\nTraders must inform support before the Friday market close\nThe request should clearly mention that positions will be held over the weekend\n\nFailure to notify support before market close may result in a violation.\n\n\nImportant Notes:\n\n\nMarkets may open with price gaps after the weekend\nIncreased volatility and slippage may occur at market open\nAll standard risk rules, including drawdown limits, still apply\n\nTraders are responsible for managing risk while holding positions over the weekend.";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// GENERAL Q&A — Greetings, Identity, Small Talk
-// ─────────────────────────────────────────────────────────────────────────────
-export const GENERAL_QA_DATASET = [
-    // Greetings
-    { "question": "hello", "answer": "Hello! 👋 How can I help you today?" },
-    { "question": "hi", "answer": "Hi there! What's on your mind?" },
-    { "question": "hey", "answer": "Hey! How can I assist you?" },
-    { "question": "how are you", "answer": "I'm doing great — thanks for asking! How about you?" },
-    { "question": "what's up", "answer": "Not much, just here to help you. What can I do for you?" },
+export const RAW_HFT_FAQ = `HFT & ALGO TRADING FAQ
 
-    // Identity
-    { "question": "who are you", "answer": "I'm Rajesh, The Fusion Funded's AI assistant — here to answer your questions about our challenge, trading rules, payouts, and more!" },
-    { "question": "what is your name", "answer": "My name is Rajesh! I'm the official AI assistant of The Fusion Funded." },
-    { "question": "are you human", "answer": "No, I'm an artificial intelligence — but I'm pretty good at answering your Fusion Funded questions! 😊" },
-    { "question": "are you a robot", "answer": "I'm an AI assistant, not a physical robot. Think of me as your always-available support guide!" },
-    { "question": "are you real", "answer": "I'm real in the digital sense — I exist as software to help you navigate The Fusion Funded." },
+Q: What is HFT trading?
+A: HFT (High-Frequency Trading) means trading using fast algorithms. Trades are placed automatically in milliseconds.
 
-    // Creator
-    { "question": "who made you", "answer": "I was created by Chandan Kumar." },
-    { "question": "who is your creator", "answer": "My creator is Chandan Kumar." },
-    { "question": "who owns you", "answer": "I'm owned and maintained by Chandan Kumar." },
-    { "question": "did chandan kumar create you", "answer": "Yes, I was created by Chandan Kumar." },
-    { "question": "are you made by openai", "answer": "No, I'm a custom AI built by Chandan Kumar specifically for The Fusion Funded." },
+Q: What is an HFT bot?
+A: An HFT bot is a software that trades for you. It follows a fixed strategy and places trades automatically.
 
-    // Politeness
-    { "question": "thank you", "answer": "You're welcome! 😊 Feel free to ask anything else." },
-    { "question": "thanks", "answer": "Anytime! Happy to help." },
-    { "question": "bye", "answer": "Goodbye! Have a great trading day! 👋" },
-    { "question": "see you later", "answer": "See you! I'll be right here whenever you need me." },
-    { "question": "good morning", "answer": "Good morning! Hope you have a great trading session today. How can I help?" },
-    { "question": "good night", "answer": "Good night! Rest well and trade smart tomorrow. 😊" },
-    { "question": "help", "answer": "Of course! I can help with questions about The Fusion Funded — challenges, trading rules, payouts, KYC, refunds, and more. What do you need?" },
-    { "question": "what can you do", "answer": "I can answer questions about The Fusion Funded's HFT 2.0 Challenge, trading rules, drawdown limits, payout structure, KYC process, refund policy, and much more. Ask away!" },
+Q: Do I need coding to use HFT bots?
+A: No. You can use ready-made bots. But basic understanding is always helpful.
 
-    // Fallback
-    { "question": "unknown", "answer": "I'm not sure I understand — could you rephrase that? I'm best at answering questions about The Fusion Funded's rules, challenges, and payouts." },
-];
+PLATFORM RULES
 
-// ─────────────────────────────────────────────────────────────────────────────
-// THE FUSION FUNDED — PROP FIRM Q&A KNOWLEDGE BASE
-// ─────────────────────────────────────────────────────────────────────────────
-export const PROP_FIRM_QA_DATASET = [
+Q: Is algo trading allowed?
+A: Yes. Algo trading is fully allowed during the challenge phase.
 
-    // =========================================================================
-    // SECTION 1 — About The Fusion Funded
-    // Source: questions_instruction.md > "All Collections > About The Fusion Funded"
-    // =========================================================================
+Q: Can I use any HFT bot?
+A: Yes, you can use your own bot or strategy, as long as you follow the rules.
 
-    {
-        "question": "what is the fusion funded",
-        "answer": "The Fusion Funded is a proprietary trading firm that provides traders with access to funded capital through a structured evaluation process. Our model is specifically designed for traders who use high-frequency trading systems (HFT), automation, and advanced execution strategies to achieve performance efficiently. Unlike traditional prop firms, The Fusion Funded allows traders to use HFT-based strategies during the challenge phase, enabling faster completion of evaluation objectives. We operate on a single evaluation model: the HFT 2.0 Challenge — designed to assess a trader's ability to generate profits while maintaining strict risk management. Traders may also choose to work with our trusted partners who specialize in HFT systems. All accounts that meet the evaluation criteria are reviewed and transitioned into a funded trading environment where structured risk rules apply."
-    },
-    {
-        "question": "what makes the fusion funded different",
-        "answer": "The Fusion Funded operates on a performance-driven and execution-flexible model built specifically for modern traders. Key differences include: HFT-enabled challenge phase — traders can use high-frequency trading systems, automation, and fast execution strategies to complete the challenge. Single streamlined evaluation (HFT 2.0) — no complex multi-phase challenges, just one clear path to funding. Improved risk structure with 10% maximum drawdown and 7% daily drawdown. Flexible profit split of 60% → 70% → 80% → 90%. Faster progression designed to allow traders to complete evaluations efficiently using their preferred strategies. Once funded, traders operate under a structured and controlled trading environment to ensure long-term sustainability and capital protection."
-    },
-    {
-        "question": "how do i get started with the fusion funded",
-        "answer": "Getting started with The Fusion Funded is simple! Step 1 — Choose Your Account: Select your preferred account size and purchase the HFT 2.0 Challenge. Step 2 — Start Trading: Begin trading on your challenge account. You may trade manually or use HFT systems and automated strategies to achieve the profit target. Traders may also choose to work with our trusted partners who can assist using high-frequency trading systems. Step 3 — Achieve the Profit Target: Reach the required profit target while following all trading rules. Step 4 — Account Review: Once the target is achieved, your account is reviewed to ensure compliance with all rules. Step 5 — Get Funded: After successful review, you will receive your funded account and can begin trading under the funded model."
-    },
-    {
-        "question": "who can join the fusion funded",
-        "answer": "The Fusion Funded is open to traders worldwide who want to demonstrate their trading skills and access funded capital. Eligibility requirements: Must be at least 18 years old, must have a valid trading strategy, and must follow all trading rules and risk guidelines. Both beginner and experienced traders are welcome. The Fusion Funded is designed especially for traders who use manual or automated strategies, want to leverage HFT systems during evaluation, and aim to trade funded capital with structured risk. Note: Services are not available in restricted jurisdictions. The Fusion Funded does not provide services to individuals located in or residents of: North Korea (DPRK), Iran, South Sudan, Sudan, or Yemen. Services are also unavailable to individuals listed on international sanctions lists, persons with criminal histories involving financial crimes or terrorism, or individuals previously banned due to contract violations or policy breaches."
-    },
-    {
-        "question": "are there restricted countries",
-        "answer": "Yes. To comply with international regulations, The Fusion Funded does not provide services to individuals located in or residents of the following countries: Democratic People's Republic of Korea (North Korea), Iran, South Sudan, Sudan, and Yemen. Additionally, services are unavailable to individuals or entities listed on international sanctions lists, global anti-terrorism compliance lists, persons with criminal histories involving financial crimes or terrorism, and individuals previously banned due to contract violations or policy breaches."
-    },
+Q: Is algo allowed on live funded accounts?
+A: No. Algo trading is strictly not allowed on live funded accounts.
 
-    // =========================================================================
-    // SECTION 2 — Weekend Trading
-    // Source: new_instructions.md [UPDATED — explicit support channels added]
-    // =========================================================================
+HOW TO PASS
 
-    {
-        "question": "is weekend holding allowed",
-        "answer": "Yes — Weekend Holding is allowed with prior approval. Traders are permitted to hold positions over the weekend on both challenge and funded accounts, provided approval is obtained before the market closes on Friday. Approval requests can be made through any support method: WhatsApp, Instagram, Email, or the Contact Us panel. The request should clearly mention that positions will be held over the weekend. Failure to notify support before market close may result in a violation. Important notes: Markets may open with price gaps after the weekend, increased volatility and slippage may occur at market open, and all standard risk rules including drawdown limits still apply. Traders are responsible for managing their risk while holding positions over the weekend."
-    },
+Q: How can I pass the challenge?
+A: You can use any HFT or algo trading software during the challenge. Algo trading helps maintain speed and consistency. Manual trading is allowed, but many traders prefer algos for better control.
 
-    // =========================================================================
-    // SECTION 3 — Trading Rules & Guidelines: HFT 2.0 Challenge + Rules 1–6
-    // Source: questions_instruction.md (base) + new_instructions.md (overrides)
-    // =========================================================================
+Q: What if I don't have an algo bot?
+A: You can get a bot or connect with professional algo traders. Many traders use external solutions to trade consistently.
 
-    {
-        "question": "what is the hft 2.0 challenge",
-        "answer": "The HFT 2.0 Challenge is The Fusion Funded's single evaluation system. It is designed for traders who want to use high-frequency trading systems (HFT), automation, and advanced execution strategies to complete their evaluation efficiently. During the challenge phase: HFT strategies are allowed, tick scalping is allowed, and arbitrage and latency-based strategies are allowed. Traders may also choose to work with our trusted partners who specialize in HFT systems. Once funded, all accounts operate under a structured and rule-based environment where specific trading restrictions apply."
-    },
-    {
-        "question": "what is the fusion funded challenge model",
-        "answer": "The Fusion Funded operates on a single evaluation system — the HFT 2.0 Challenge. There are no complex multi-phase evaluations. One clear path to funding. During the challenge phase, HFT strategies, tick scalping, and arbitrage are all permitted. Trusted partners are also available to assist with completing the challenge using advanced trading solutions. Once funded, specific trading restrictions apply to ensure long-term account sustainability."
-    },
-    {
-        "question": "what are the challenge objectives",
-        "answer": "To successfully complete the HFT 2.0 Challenge, traders must: achieve the required profit target, follow all trading rules, and maintain proper risk management throughout the evaluation. All accounts are manually reviewed after the challenge is completed to verify compliance before funding is granted."
-    },
-    {
-        "question": "what is the evaluation process",
-        "answer": "Once the profit target is achieved, your account is placed under review. During this review, trading behavior and rule compliance are verified by The Fusion Funded team. Upon approval, the trader is moved to the funded stage and receives their funded account to begin live trading."
-    },
-    {
-        "question": "what is the profit target",
-        "answer": "The profit target for the HFT 2.0 Challenge is 10% of the initial account size. Example: For a $100,000 account, the profit target is $10,000. This target can be achieved using either manual trading or HFT strategies during the challenge phase."
-    },
-    {
-        "question": "what is the drawdown rule",
-        "answer": "The Fusion Funded uses the following drawdown limits: Maximum Overall Drawdown — the maximum loss allowed is 10% of the initial account size. Daily Drawdown — the daily loss limit is 7%. Example for a $100,000 account: Maximum Drawdown = $10,000, Daily Drawdown = $7,000. The account balance or equity must never fall below these defined limits at any point."
-    },
-    {
-        "question": "what is maximum drawdown",
-        "answer": "The maximum overall drawdown allowed is 10% of the initial account size. For a $100,000 account, this means your balance or equity must never fall below $90,000 at any point during the challenge or funded phase."
-    },
-    {
-        "question": "what is daily drawdown",
-        "answer": "The daily drawdown limit is 7% of the initial account size. For a $100,000 account, the daily loss limit is $7,000. This limit resets each trading day. Your equity must not fall below the starting daily balance minus 7% at any point during that day."
-    },
-    {
-        "question": "what is the 20 percent risk per trade rule",
-        "answer": "A trader can risk a maximum of 20% of the total drawdown allowance in a single trade. To follow this rule, a mandatory Stop Loss (SL) on all positions is required — this is how risk is tracked and kept within the 20% limit. Example: For a $100,000 account with $10,000 total drawdown allowance, the maximum risk per trade is $2,000. Exceeding this limit at any point during trade execution or exposure calculation will be treated as a violation regardless of trade outcome. Note: The first breach may result in a warning, but any breach after that is treated as a hard breach."
-    },
-    {
-        "question": "what is single trade risk limit",
-        "answer": "You may risk up to 20% of your total drawdown allowance in a single trade. A mandatory Stop Loss is required to track and enforce this limit. Example: $100,000 account → $10,000 drawdown allowance → max $2,000 risk per trade. First breach = warning. Subsequent breach = hard breach (account termination)."
-    },
-    {
-        "question": "is stop loss mandatory",
-        "answer": "Yes — a Stop Loss (SL) is mandatory on all positions when trading on The Fusion Funded. This is required to track and enforce the 20% risk per trade rule. Failure to use a Stop Loss while risking beyond the 20% drawdown threshold will be treated as a violation."
-    },
+Q: Do you provide bots?
+A: No. The firm does not provide bots. You need to use your own or external solutions.
 
-    // =========================================================================
-    // SECTION 4 — Trading Rules 7–15
-    // Source: questions_instruction.md (base) + new_instructions.md (overrides)
-    // Overrides applied: Min Trading Days, Min Day Rule, Martingale, Holding Time
-    // =========================================================================
+Q: Where can I see successful traders?
+A: You can check the firm's Instagram page. Some traders and their results are shared there.
 
-    {
-        "question": "what is the consistency rule",
-        "answer": "A trader's single trading day or single trade must not exceed 30% of total profits. Example: If total profit is $10,000, the maximum allowed profit from any single day or single trade is $3,000. Exceeding this limit will result in a violation."
-    },
-    {
-        "question": "what is the minimum trading days requirement",
-        "answer": "The minimum required trading days for the HFT 2.0 Challenge is 12 days. An optional add-on is available that reduces this requirement to 7 trading days. Note: A trading day is only counted if the trader meets the minimum trading day threshold (see minimum trading day rule)."
-    },
-    {
-        "question": "how many days do i need to trade",
-        "answer": "You need a minimum of 12 trading days to be eligible for payout. If you purchase the optional add-on, this is reduced to 7 trading days. A day only counts if you meet the minimum profit threshold for that day (0.1x of your highest single trade or day profit within the payout cycle)."
-    },
-    {
-        "question": "what is the minimum trading day rule",
-        "answer": "A trading day is only counted as valid if the trader places a trade and achieves at least 0.1x (1/10th) of the highest profit recorded on a single trade or day during the payout cycle. Example: If your highest profit on a single trade/day is $1,000, then you must earn at least $100 on any other day for that day to count as a valid trading day. Days where profits fall below this threshold will not be counted toward your minimum trading day requirement."
-    },
-    {
-        "question": "what is the layering rule",
-        "answer": "Opening more than 3 positions in the same direction on the same instrument simultaneously is not allowed. Adding positions to trades that are already in drawdown, grid trading, or recovery-based entries may be considered a violation. In the challenge phase, this may be treated as a soft breach. In the funded stage, this may be treated as a hard breach."
-    },
-    {
-        "question": "what is the martingale rule",
-        "answer": "Martingale trading is strictly prohibited. Martingale includes increasing position size after a loss in an attempt to recover previous losses. Important: The sum of all open positions is treated as a single combined position. If a trader increases total exposure to more than 1.6X after a losing trade, it will be considered a martingale strategy. Examples of martingale violations: Increasing lot size more than 1.6X after a loss, re-entering trades with higher risk to recover drawdown, adding positions that increase total exposure beyond 1.6X after a loss. In the challenge phase, this may be treated as a soft breach. In the funded stage, it is treated as a hard breach."
-    },
-    {
-        "question": "is martingale allowed",
-        "answer": "No — martingale trading is strictly prohibited. Increasing your total exposure to more than 1.6X of the previous position size after a losing trade is considered a martingale strategy and will result in a breach. Challenge phase: soft breach. Funded stage: hard breach."
-    },
-    {
-        "question": "what is the minimum trade holding time",
-        "answer": "This rule applies to funded accounts only. Each trade on a funded account must be held for a minimum of 2 minutes. Up to 1–2 trades per payout cycle may be ignored (i.e., brief holds on 1–2 trades will not trigger a violation). If this limit is exceeded beyond those 1–2 exceptions: the payout will be rejected, the account will be reset to the initial balance, and this is treated as a soft breach."
-    },
-    {
-        "question": "what is minimum holding time on funded accounts",
-        "answer": "On funded accounts, each trade must be held for at least 2 minutes. A grace allowance of 1–2 trades per payout cycle exists where shorter holds may be ignored. Exceeding this is a soft breach — your payout is rejected and your account is reset to its initial balance."
-    },
-    {
-        "question": "what is toxic trading behavior",
-        "answer": "The following behaviors are considered trading violations under the Toxic Trading Behavior rule: Ignoring risk management, reckless or undisciplined trading, and trading without a clear or defined strategy. Repeated violations of this kind may result in trading restrictions or account termination."
-    },
-    {
-        "question": "what is overtrading",
-        "answer": "Overtrading refers to: placing an excessive number of trades in a short period of time, and making continuous entries without a proper setup or rationale. Repeated overtrading behavior may result in restrictions or account termination."
-    },
-    {
-        "question": "what is gambling behavior",
-        "answer": "Gambling behavior includes: making random entries without analysis, revenge trading after losses, and emotion-driven execution. Repeated violations of this nature may result in trading restrictions or account termination."
-    },
-    {
-        "question": "what is tick scalping",
-        "answer": "Tick scalping refers to extremely fast trades that capture very small price movements — for example, opening and closing trades repeatedly within very short time durations. During the challenge phase, tick scalping is allowed. On funded accounts, tick scalping is restricted and excessive use may be treated as a violation."
-    },
-    {
-        "question": "is scalping allowed",
-        "answer": "Scalping is allowed during the challenge phase. However, on funded accounts, tick scalping (extremely fast trades capturing micro-movements) is restricted and excessive use may result in a violation. Regular scalping with proper holding time (minimum 2 minutes) is acceptable on funded accounts."
-    },
-    {
-        "question": "is arbitrage trading allowed",
-        "answer": "Arbitrage trading is allowed during the challenge phase. However, on funded accounts, arbitrage trading is restricted and may be treated as a violation. Arbitrage refers to exploiting price differences rather than genuine market direction — for example, opening offsetting positions across correlated instruments to neutralize exposure."
-    },
+Q: Is this beginner friendly?
+A: Yes, but you need a proper strategy. Without a system, it is difficult to pass.
 
-    // =========================================================================
-    // SECTION 5 — Trading Rules 16–22
-    // Source: questions_instruction.md
-    // =========================================================================
+Q: Why is algo trading useful here?
+A: Algo trading removes emotions. It helps you follow rules and stay consistent.
 
-    {
-        "question": "is hedging allowed",
-        "answer": "Improper hedging practices are not allowed on The Fusion Funded. Improper hedging includes: opening opposite trades on the same instrument, and locking positions to remove exposure. Such behavior may be flagged and treated as a violation."
-    },
-    {
-        "question": "what is reverse trading",
-        "answer": "Reverse trading includes: intentionally placing losing trades, offsetting positions across accounts, and manipulating exposure to bypass trading rules. Trades placed to neutralize exposure within short time intervals may be flagged as reverse trading and treated as a violation."
-    },
-    {
-        "question": "what is one sided bias trading",
-        "answer": "Repeated trading in only one direction (always buying or always selling) without logical justification may trigger a review. This behavior may indicate poor risk management or a strategy imbalance and can result in a restriction or termination."
-    },
-    {
-        "question": "is news trading allowed",
-        "answer": "Yes — news trading is fully allowed at The Fusion Funded. Traders may open, close, and manage positions during: high-impact news releases, economic announcements, and volatile market conditions. All standard risk rules still apply. Traders are responsible for managing their own risk during periods of high volatility."
-    },
-    {
-        "question": "can i trade during news",
-        "answer": "Yes, trading during news events is fully allowed. There are no restrictions on news trading. However, all standard rules including drawdown limits still apply. Markets can move rapidly during news — manage your risk carefully."
-    },
-    {
-        "question": "what is excessive risk taking",
-        "answer": "The use of disproportionately large position sizes or repeated maximum exposure trades that can significantly impact the account balance may be considered excessive risk-taking. Examples: Repeated use of maximum lot size, taking trades that can damage the account rapidly, and over-reliance on leverage. Such behavior may result in restrictions or account termination."
-    },
-    {
-        "question": "what is the breach system",
-        "answer": "The Fusion Funded uses a two-tier breach system. Soft Breach: The payout is rejected, the account is reset to its initial balance, and the account remains active in the same phase — the trader can continue trading. Hard Breach: The account is permanently terminated with no option to continue."
-    },
-    {
-        "question": "what is a soft breach",
-        "answer": "A soft breach is a minor violation that results in: the payout being rejected, and the account being reset to its initial balance. However, the account remains active in the same phase — the trader can continue trading without losing the account entirely."
-    },
-    {
-        "question": "what is a hard breach",
-        "answer": "A hard breach is a serious violation that results in permanent account termination. The account is immediately and permanently disabled. Examples of hard breach triggers: breaking the maximum drawdown, martingale violations on funded accounts, and layering violations on funded accounts."
-    },
-    {
-        "question": "what happens if i violate the rules",
-        "answer": "Violations are categorized as soft or hard breaches. A soft breach results in payout rejection and account reset to initial balance — you keep the account and can continue trading. A hard breach results in permanent account termination. The severity depends on which rule was violated and whether it occurred during the challenge phase or funded stage."
-    },
-    {
-        "question": "what happens if i break drawdown",
-        "answer": "Exceeding the maximum overall drawdown (10%) or the daily drawdown (7%) is treated as a hard breach — your account is permanently terminated. Make sure your balance or equity never falls below the defined drawdown limits."
-    },
+ACCOUNT ACCESS & IP RULES
 
-    // =========================================================================
-    // SECTION 6 — KYC (Know Your Customer)
-    // Source: questions_instruction.md > "All Collections > KYC"
-    // =========================================================================
+Q: Is there any IP address rule?
+A: No, there is no IP address restriction on this platform.
 
-    {
-        "question": "why is kyc required",
-        "answer": "Completing the Know Your Customer (KYC) process is mandatory to maintain a secure and compliant trading environment at The Fusion Funded. KYC is required for 4 key reasons: 1. Legal & Regulatory Compliance — KYC helps prevent fraud, money laundering, identity misuse, and financial crime. It ensures all accounts belong to real and verified individuals. 2. Account Security & Protection — KYC links your trading account to verified identity details, helping prevent unauthorized access, identity theft, and account misuse. 3. Fair Trading Environment — KYC ensures one individual does not operate multiple accounts, and that duplicate or fraudulent accounts are prevented. 4. Payout Eligibility — KYC verification must be completed before any payout request can be processed. Without KYC approval, withdrawals cannot be processed and account features may remain restricted."
-    },
-    {
-        "question": "what documents are required for kyc",
-        "answer": "To complete KYC verification, traders must submit one valid government-issued photo ID. Accepted documents: Passport (preferred), Driver's License, or National ID Card. Requirements: The document must be valid and not expired, all details must be clear and readable, and the name on the document must match the account details exactly."
-    },
-    {
-        "question": "how long does kyc take",
-        "answer": "KYC verification is usually completed quickly depending on document quality. Typical timeframes: Instant approval in some cases, or Standard Processing of 1–2 business days. Delays may occur if: documents are unclear or incomplete, information does not match account details, or additional verification is required. You will be notified via email and account status update once verification is complete."
-    },
-    {
-        "question": "what if kyc is rejected",
-        "answer": "If your KYC is rejected, it can usually be resolved by correcting the submitted information. Common reasons for rejection: blurry or cropped documents, expired documents, mismatched account details, or incomplete submission. What happens next: You will receive a rejection email with the reason, and you can resubmit corrected documents. Re-verification typically takes 1–2 business days. Important: Until KYC is approved, account access may remain restricted and payouts cannot be processed."
-    },
+Q: Can I trade from multiple devices?
+A: Yes, you can trade from different devices.
 
-    // =========================================================================
-    // SECTION 7 — Withdrawals & Payouts
-    // Source: questions_instruction.md (base) + new_instructions.md (override)
-    // Override: Minimum trading days → 12 days (7 with add-on)
-    // =========================================================================
+Q: Can I use VPS or server?
+A: Yes, VPS or servers can be used for trading.
 
-    {
-        "question": "what is the minimum withdrawal amount",
-        "answer": "The Fusion Funded applies a minimum withdrawal requirement to ensure efficient processing. Minimum Withdrawal: 1% of the initial account size. Withdrawal requests below this amount cannot be processed. Example: For a $100,000 account, the minimum withdrawal is $1,000."
-    },
-    {
-        "question": "what are the withdrawal methods",
-        "answer": "The Fusion Funded supports the following payout methods: Cryptocurrency (USDT and other supported assets), UPI transfers, Bank transfers, and E-wallets (where available). Payment options may vary depending on your location and the availability of each method."
-    },
-    {
-        "question": "what are the withdrawal requirements",
-        "answer": "Before submitting a withdrawal request, all of the following conditions must be met: Minimum profit of 1% of account size is achieved, Minimum trading days requirement is completed (12 days, or 7 days with the add-on), KYC verification is completed and approved, All trading rules are followed, No active violations are present, and Account is in profit and above initial balance. Important: Once a withdrawal request is submitted, no further trading activity is allowed. Placing trades after requesting a payout may result in a violation and may lead to account termination."
-    },
-    {
-        "question": "when can i request a withdrawal",
-        "answer": "You can request a withdrawal after meeting all of the following: minimum 1% profit on your account, at least 12 trading days completed (7 days with add-on), KYC verified, no active violations, and account balance is above the initial balance. Once you submit the request, stop all trading activity immediately."
-    },
-    {
-        "question": "what is the payout cycle",
-        "answer": "The Fusion Funded operates on an 18-day payout cycle. Traders become eligible to request payouts after completing the payout cycle and meeting all payout requirements. The profit split structure is: 60% on first payout, scaling to 70%, then 80%, then 90% as you build your performance track record."
-    },
-    {
-        "question": "what is the profit split",
-        "answer": "The Fusion Funded offers a scaling profit split: 60% on your first payout, scaling up to 70%, 80%, and then 90% as you achieve consistent performance milestones. The payout cycle is 18 days."
-    },
-    {
-        "question": "how long does a withdrawal take",
-        "answer": "Once a withdrawal request is submitted, it is reviewed and processed after all eligibility conditions are confirmed. After approval, funds are processed and delivered as soon as possible depending on the selected payout method. Processing times may vary based on: the payment method chosen, network conditions, and banking or provider timelines. Delays may also occur due to weekends, holidays, or additional compliance checks. The Fusion Funded ensures all payouts are processed securely and efficiently."
-    },
+Q: Can multiple people trade from same location?
+A: Yes, there is no restriction on location or IP.
 
-    // =========================================================================
-    // SECTION 8 — Account Security & Access Rules
-    // Source: questions_instruction.md > "All Collections > Account Security & Access Rules"
-    // =========================================================================
+Q: Can I login from different cities or countries?
+A: Yes, you can access your account from different locations.
 
-    {
-        "question": "what is the ip address policy",
-        "answer": "There are no strict IP location restrictions for traders at The Fusion Funded. Traders may access their accounts from different locations, devices, or networks without violating any rules. While location flexibility is allowed, the following are strictly prohibited: account sharing, unauthorized third-party access, selling or transferring account access, and use of compromised or stolen identities. If suspicious activity is detected, The Fusion Funded may request additional verification. Traders can travel and trade freely, log in from multiple locations, and use different devices — standard security monitoring still applies."
-    },
-    {
-        "question": "what is the inactivity policy",
-        "answer": "To ensure active participation, The Fusion Funded enforces an inactivity rule across all accounts. Inactivity Rule: If a trading account remains inactive for 14 consecutive days, it will be considered a violation and may result in account termination. What counts as inactivity: no trades placed and no trading activity during that period. How to avoid this: place at least one trade within every 14-day period to maintain regular account activity."
-    },
-    {
-        "question": "can i share my account",
-        "answer": "No — account sharing is strictly prohibited. Unauthorized third-party access, selling or transferring account access, and using compromised or stolen identities are all violations that may result in account termination."
-    },
-    {
-        "question": "can i trade from different locations",
-        "answer": "Yes — there are no IP address location restrictions. You can access your account from different countries, devices, or networks freely. Just ensure you never share your account credentials or allow unauthorized access."
-    },
+PASSING RELATED
 
-    // =========================================================================
-    // SECTION 9 — Refund Policy
-    // Source: questions_instruction.md > "All Collections > Refund Policy"
-    // =========================================================================
+Q: What is the easiest way to pass?
+A: There is no fixed way. Many traders use algo strategies for better consistency.
 
-    {
-        "question": "what is the refund policy",
-        "answer": "Evaluation fees are not refunded immediately after purchase. However, The Fusion Funded offers a performance-based refund system for eligible traders. Refund Eligibility: The challenge fee can be refunded once the trader successfully reaches the funded stage, completes four successful payouts, maintains compliance with all trading rules, and keeps the account in good standing. Add-On Requirement: Refund eligibility is only available for traders who selected the refund add-on at the time of purchase. If the add-on is not selected, the evaluation fee remains non-refundable. When is the refund issued: The refund is processed along with the fourth payout from the funded account. Refunds are NOT applicable for: failed challenges, rule violations, account termination, inactivity breaches, payment disputes or chargebacks, and trading losses."
-    },
-    {
-        "question": "is the challenge fee refundable",
-        "answer": "Yes — but only under specific conditions. The challenge fee is refunded with your fourth successful payout from the funded account, provided you selected the refund add-on at the time of purchase and maintained compliance with all trading rules. Without the add-on, the fee is non-refundable. Fees are never refunded for failed challenges, violations, or account termination."
-    },
-    {
-        "question": "why do i need to pay an evaluation fee",
-        "answer": "Evaluation fees cover: platform access and infrastructure, technology and risk management systems, and operational costs. These costs are incurred the moment your account is activated. The fee may be refunded along with your fourth payout if you selected the refund add-on and successfully reach the funded stage."
-    },
-    {
-        "question": "what is a prop firm",
-        "answer": "A proprietary trading firm (prop firm) provides capital to traders to trade financial markets. At The Fusion Funded, you trade with our capital after passing the HFT 2.0 Challenge, removing the need to risk your own money — while following our risk management rules to protect the capital."
-    },
-    {
-        "question": "what is the fusion funded hft challenge",
-        "answer": "The HFT 2.0 Challenge is the evaluation program used by The Fusion Funded to assess traders before granting them a funded account. It requires achieving a 10% profit target while respecting a 10% maximum drawdown and 7% daily drawdown. HFT strategies, tick scalping, and arbitrage are all allowed during the challenge phase. Once passed and reviewed, you receive a funded account with a 60% profit split to start, scaling up to 90%."
-    },
+Q: Can I pass without algo?
+A: Yes, manual trading is allowed. But algo trading helps with discipline and speed.
 
-    // Fallback
-    { "question": "unknown", "answer": "I can help with questions about The Fusion Funded's HFT 2.0 Challenge, trading rules, drawdown, payouts, KYC, and refund policy. What would you like to know?" }
-];
+Q: Is algo necessary to pass?
+A: No, it is not required. But many traders prefer using algos.
 
+Q: Why do people use bots to pass?
+A: Bots follow fixed rules and remove emotions. This helps in maintaining consistency.
 
+Q: Can beginners pass easily?
+A: It depends on your strategy and discipline. Without a proper system, it is difficult.
+
+ALGO / BOT RELATED
+
+Q: Where can I get an HFT bot?
+A: You need to arrange your own bot or strategy. Many traders use external algo solutions.
+
+Q: Are free bots available?
+A: Some are available, but quality may vary. Always test before using.
+
+Q: Can I use MT4/MT5 EAs?
+A: Yes, you can use EAs during the challenge phase.
+
+Q: Can I modify my bot?
+A: Yes, you can use and modify your own strategies.
+
+Q: Do you check my strategy?
+A: No, you are free to use your own trading method within rules.
+
+RULE CLARITY
+
+Q: Is algo allowed in challenge only?
+A: Yes. Algo trading is allowed in challenge phase only.
+
+Q: What happens after I pass?
+A: After passing, you get a funded account. Algo trading is not allowed on live accounts.
+
+Q: Can I use same bot in live account?
+A: No, algo trading is restricted on live funded accounts.
+
+Q: How do people usually trade here?
+A: Many traders use structured or automated strategies. You can explore different approaches used by traders.
+
+Q: Can I learn from other traders?
+A: Yes, many traders share insights online and in communities.
+
+RISK / DOUBT QUESTIONS
+
+Q: Is this risky?
+A: Trading always involves risk. You should trade with proper strategy and control.
+
+Q: Can I lose my account?
+A: Yes, if you break rules or hit limits.
+
+Q: Is there guaranteed profit from HFT bot?
+A: No. There is no guarantee in trading in LIVE accounts and you are strictly prohibited to use HFT bots for live accounts. However, the chances of making good profits through HFTs in the challenge phase is very high as the evaluation phase is a heavily simulated environment.`;
