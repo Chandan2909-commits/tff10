@@ -1,4 +1,6 @@
-﻿:root {
+﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
     --primary-color: #3077c3;
     --bg-dark: #050505;
     --text-white: #ffffff;
@@ -21,6 +23,7 @@
     max-height: 74vh;
     background: rgba(20, 20, 20, 0.95);
     color: #ffffff;
+    font-family: 'Inter', sans-serif;
     backdrop-filter: blur(20px);
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
