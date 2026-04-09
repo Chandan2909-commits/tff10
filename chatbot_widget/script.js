@@ -317,7 +317,7 @@ Answer the user's question based ONLY on the above knowledge base.`;
                 ],
                 model: "llama-3.3-70b-versatile",
                 temperature: 0.3,
-                max_tokens: 50
+                max_tokens: 350
             })
         });
 
