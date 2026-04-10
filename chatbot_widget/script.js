@@ -218,10 +218,10 @@ function findBestMatchFallback(userInput) {
 
     // Quick conversational checks
     if (["hello", "hi", "hey", "good morning"].some(g => query === g || query.startsWith(g + ' '))) {
-        return "Hello! 👋 I am Rajesh, The Fusion Funded's AI assistant. How can I help you today?";
+        return "Hello! 👋 I am Neeraj, The Fusion Funded's AI assistant. How can I help you today?";
     }
     if (query.includes("who are you") || query.includes("your name")) {
-        return "I'm Rajesh, The Fusion Funded's official AI assistant. I'm here to answer your questions about our rules, challenges, and payouts!";
+        return "I'm Neeraj, The Fusion Funded's official AI assistant. I'm here to answer your questions about our rules, challenges, and payouts!";
     }
 
     // --- Step 1: search FAQ_DATA structured entries ---
@@ -283,7 +283,7 @@ function findBestMatchFallback(userInput) {
 async function callGroqAPI(userMessage) {
     try {
         const GROQ_API_KEY = "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";
-        const systemPrompt = `You are Rajesh, an intelligent assistant for The Fusion Funded, a proprietary trading firm. Your role is to answer questions STRICTLY based on the knowledge base provided below.
+        const systemPrompt = `You are Neeraj, an intelligent assistant for The Fusion Funded, a proprietary trading firm. Your role is to answer questions STRICTLY based on the knowledge base provided below.
 
 IMPORTANT RULES:
 1. ONLY use information from the knowledge base below to answer questions
