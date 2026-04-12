@@ -729,7 +729,7 @@ button {
   font-size: 0.68rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #ffffff;
 }
 
 .info-value {

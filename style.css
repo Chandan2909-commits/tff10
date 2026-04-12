@@ -2292,7 +2292,7 @@ button {
 }
 
 .whatsapp-float {
-  position: fixed;
+  display: none;
   bottom: 100px;
   right: 20px;
   z-index: 999;
